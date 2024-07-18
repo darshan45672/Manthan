@@ -36,13 +36,6 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
-
-      - name: Copy environment file
-        run: cp .env.example .env
-
-      - name: Generate app key
-        run: php artisan key:generate
-      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -52,7 +45,14 @@ jobs:
       - name: Build assets
         run: npm run build
       - name: List build directory
-        run: ls -la public/build # Debugging step to check if manifest.json is generated
+        run: ls -la public/build # Debugging step to check if manifest.json is generate
+
+      - name: Copy environment file
+        run: cp .env.example .env
+
+      - name: Generate app key
+        run: php artisan key:generate
+
       - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
         env:
          DB_CONNECTION: sqlite
