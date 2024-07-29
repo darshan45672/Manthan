@@ -29,19 +29,12 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class HoDResource extends Resource
 {
     protected static ?string $model = HoD::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-user';
-
     protected static ?string $navigationLabel = 'HoD';
-
     protected static ?string $slug = 'college-hods';
-
     protected static ?string $modelLabel = 'H.O.D';
-
     protected static ?string $navigationGroup = 'Employees and Students';
-
     protected static ?int $navigationSort = 2;
-
     public static function form(Form $form): Form
     {
         return $form

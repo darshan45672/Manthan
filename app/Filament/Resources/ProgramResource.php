@@ -30,13 +30,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ProgramResource extends Resource
 {
     protected static ?string $model = Program::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-swatch';
-
     protected static ?string $navigationLabel = 'Program and activities';
-
     protected static ?string $slug = 'programs';
-
     protected static ?string $modelLabel = 'Program';
 
     // protected static ?string $navigationGroup = 'Programs and activities';

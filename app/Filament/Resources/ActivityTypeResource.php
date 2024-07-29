@@ -29,16 +29,11 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ActivityTypeResource extends Resource
 {
     protected static ?string $model = ActivityType::class;
-
     protected static ?string $navigationGroup = 'AICTE Activity';
     protected static ?string $slug = 'aicte-activity-type';
-
     protected static ?string $modelLabel = 'Activity Type';
-
     protected static ?string $navigationLabel = 'Activity Type';
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
-
     public static function form(Form $form): Form
     {
         return $form

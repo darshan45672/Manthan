@@ -27,19 +27,12 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class StudentResource extends Resource
 {
     protected static ?string $model = Student::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
-
     protected static ?string $navigationLabel = 'Student';
-
     protected static ?string $slug = 'college-students';
-
     protected static ?string $modelLabel = 'Student';
-
     protected static ?int $navigationSort = 4;
-
     protected static ?string $navigationGroup = 'Employees and Students';
-
     public static function form(Form $form): Form
     {
         return $form

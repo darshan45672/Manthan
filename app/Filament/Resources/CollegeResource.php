@@ -31,13 +31,9 @@ class CollegeResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
     protected static ?string $navigationLabel = 'Affliated Colleges';
-
     protected static ?string $slug = 'affliated-colleges';
-
     protected static ?string $modelLabel = 'Affliated College';
-
     protected static ?string $navigationGroup = 'Affliated Institutions';
-
     public static function form(Form $form): Form
     {
         return $form
