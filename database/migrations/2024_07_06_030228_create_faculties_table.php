@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('college_id')->constrained('colleges')->onDeleteCascade();
             $table->foreignId('department_id')->constrained('departments')->onDeleteCascade();
             $table->string('designation');
-            $table->string('qualification');
+            $table->string('qualification')->nullable();
             $table->string('experience');
-            $table->string('specialization');
+            $table->string('specialization')->nullable();
             $table->string('joining_date');
             $table->string('leaving_date')->nullable();
             $table->boolean('status')->default(false);
