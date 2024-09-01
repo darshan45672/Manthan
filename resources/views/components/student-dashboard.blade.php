@@ -22,6 +22,12 @@
                     <div class="d-flex align-items-center"><span class="nav-link-text">View Activity</span></div>
                 </a>
             </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="events-tab" data-bs-toggle="tab" href="#events" role="tab"
+                    aria-controls="events" aria-selected="false">
+                    <div class="d-flex align-items-center"><span class="nav-link-text">Events</span></div>
+                </a>
+            </li>
         </ul>
     </div>
 @endsection
@@ -139,8 +145,6 @@
                 </div>
             </div>
 
-             @include('dashboard.workshop')
-
             <div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-body-emphasis pt-7 pb-3 border-y">
                 <div class="row">
                     <div class="col-12 col-xl-7 col-xxl-6">
@@ -199,5 +203,7 @@
         @include('dashboard.addActivity')
 
         @include('dashboard.viewActivity')
+
+        @include('dashboard.events')
     </div>
 @endsection
