@@ -382,20 +382,21 @@
                     <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Meet Our Expert Instructor</h2>
                 </div>
                 <div class="team-top-btn">
-                    <a href="contact.html" class="ed-primary-btn">Contact Us</a>
+                    <a href="{{ route('contact') }}" class="ed-primary-btn">Contact Us</a>
                 </div>
             </div>
         </div>
         <div class="team-container">
             <div class="row gy-xl-0 gy-4 justify-content-center">
+                @foreach ($colleges as $college)
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="team-item-2 wow fade-in-bottom" data-wow-delay="200ms">
                         <div class="team-thumb">
-                            <img src="ui/assets/img/team/team-5.png" alt="team">
+                            <img src="{{ Storage::url($college->logo) }}" alt="{{ $college->name }}">
                             <div class="team-content">
                                 <div class="instructor-info">
-                                    <h3 class="title"><a href="teachers.html">William Samuel</a></h3>
-                                    <span>Instructor</span>
+                                    <h3 class="title">{{ $college->name }}</h3>
+                                    <span>{{ $college->college_code }}</span>
                                 </div>
                                 <div class="team-social">
                                     <div class="expand">
@@ -413,81 +414,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="team-item-2 wow fade-in-bottom" data-wow-delay="400ms">
-                        <div class="team-thumb">
-                            <img src="ui/assets/img/team/team-6.png" alt="team">
-                            <div class="team-content">
-                                <div class="instructor-info">
-                                    <h3 class="title"><a href="teachers.html">Olivia Sophia</a></h3>
-                                    <span>Instructor</span>
-                                </div>
-                                <div class="team-social">
-                                    <div class="expand">
-                                        <i class="fa-solid fa-share-nodes"></i>
-                                    </div>
-                                    <ul class="social-list">
-                                        <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="google"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="twitter"><i class="fab fa-behance"></i></a></li>
-                                        <li><a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="team-item-2 wow fade-in-bottom" data-wow-delay="500ms">
-                        <div class="team-thumb">
-                            <img src="ui/assets/img/team/team-7.png" alt="team">
-                            <div class="team-content">
-                                <div class="instructor-info">
-                                    <h3 class="title"><a href="teachers.html">Jacob Mason</a></h3>
-                                    <span>Instructor</span>
-                                </div>
-                                <div class="team-social">
-                                    <div class="expand">
-                                        <i class="fa-solid fa-share-nodes"></i>
-                                    </div>
-                                    <ul class="social-list">
-                                        <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="google"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="twitter"><i class="fab fa-behance"></i></a></li>
-                                        <li><a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="team-item-2 wow fade-in-bottom" data-wow-delay="600ms">
-                        <div class="team-thumb">
-                            <img src="ui/assets/img/team/team-8.png" alt="team">
-                            <div class="team-content">
-                                <div class="instructor-info">
-                                    <h3 class="title"><a href="teachers.html">Isabella Grace</a></h3>
-                                    <span>Instructor</span>
-                                </div>
-                                <div class="team-social">
-                                    <div class="expand">
-                                        <i class="fa-solid fa-share-nodes"></i>
-                                    </div>
-                                    <ul class="social-list">
-                                        <li><a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#" class="google"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#" class="twitter"><i class="fab fa-behance"></i></a></li>
-                                        <li><a href="#" class="pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
