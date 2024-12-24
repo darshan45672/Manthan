@@ -25,8 +25,12 @@
 <section class="blog-details pt-120 pb-120">
     <div class="container">
         <div class="row">
+            @if ($posts->isEmpty())
+            <center>
+                <h1 class="display-4">No Posts Available</h1>
+            </center>
+            @else
             <div class="col-lg-8">
-
                 @foreach ($posts as $post)
                 <div class="post-card-4 post-inner-2 fade-top">
                     <div class="post-thumb">
@@ -42,8 +46,8 @@
                             <h3 class="title"><a href="blog-details.html">{{ $post->title }}</a></h3>
                             <p>{{ \Illuminate\Support\Str::words($post->content, 100, '...') }}</p>
                             <div class="post-bottom">
-                                <a class="read-more ed-primary-btn" href="{{ route('blogs.show', $post->id) }}">Read More<i
-                                        class="fa-regular fa-arrow-right"></i></a>
+                                <a class="read-more ed-primary-btn" href="{{ route('blogs.show', $post->id) }}">Read
+                                    More<i class="fa-regular fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -58,13 +62,15 @@
                     {{ $posts->links('vendor.pagination.default') }}
                 </ul>
             </div>
+            @endif
+            @if (!$posts->isEmpty())
             <div class="col-lg-4">
                 <div class="sidebar-widget">
                     <h3 class="widget-title">Search</h3>
                     <div class="search-box">
-                        <form action="#" class="search-form">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <button class="search-btn" type="button">
+                        <form action="{{ route('blogs') }}" method="GET" class="search-form">
+                            <input type="text" name="search" value="{{ request('search', '') }}" class="form-control" placeholder="Search">
+                            <button class="search-btn" type="submit">
                                 <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
                             </button>
                         </form>
@@ -107,6 +113,7 @@
                     </ul>
                 </div> --}}
             </div>
+            @endif
         </div>
     </div>
 </section>

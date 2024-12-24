@@ -12,6 +12,17 @@ class BlogController extends Controller
     public function index(){
         $posts = Post::orderBy("created_at","desc")->paginate(10);
         $categories = Category::all();
+    
+        if(request()->has('search')){
+            $search = request()->get('search');
+            $posts = Post::where('title', 'like', '%' . $search . '%')
+            ->orWhere('content', 'like', '%' . $search . '%')
+            ->orderBy("created_at", "desc")
+            ->paginate(10);
+            // dd($posts);
+        }
+        // dd($posts);
+
         return view('blog.index', compact('posts', 'categories'));
     }
 
