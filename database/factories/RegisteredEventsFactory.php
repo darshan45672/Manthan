@@ -17,7 +17,11 @@ class RegisteredEventsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::factory(),
+            'program_id' => \App\Models\Program::factory(),
+            'registration_date' => $this->faker->dateTime(),
+            'is_paid' => $this->faker->boolean(),
+            'is_attended' => $this->faker->boolean(),
         ];
     }
 }

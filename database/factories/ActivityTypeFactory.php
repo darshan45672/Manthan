@@ -17,7 +17,9 @@ class ActivityTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'credits' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

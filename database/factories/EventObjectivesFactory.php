@@ -17,7 +17,9 @@ class EventObjectivesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
+            'program_id' => \App\Models\Program::factory(),
         ];
     }
 }

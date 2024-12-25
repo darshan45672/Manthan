@@ -17,7 +17,9 @@ class ProgramExpectedOutcomesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'label' => $this->faker->word,
+            'name' => $this->faker->word,
+            'description' => $this->faker->paragraph,
         ];
     }
 }

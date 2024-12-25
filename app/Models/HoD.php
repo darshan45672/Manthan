@@ -9,7 +9,7 @@ class HoD extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'college_id', 'department_id', 'designation', 'qualification','experience', 'specialization','joining_date', 'leaving_date'];
+    protected $fillable = ['user_id', 'college_id', 'department_id', 'qualification','experience', 'specialization','joining_date', 'leaving_date'];
 
     protected $casts = [
         'qualification' => 'array',

@@ -34,7 +34,7 @@ class Program extends Model
         'requires_registration' => 'boolean',
     ];
     public function speakers(){
-        return $this->hasMany(Speakers::class);
+        return $this->belongsTo(Speakers::class);
     }
 
     public function objectives(){
