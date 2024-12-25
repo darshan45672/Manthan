@@ -13,7 +13,6 @@ class ProgramCRUDTest extends TestCase
     /** @test */
     public function it_can_create_a_program()
     {
-        // Prepare the data
         $data = [
             'banner' => 'banner.jpg',
             'name' => 'Tech Conference',
@@ -32,10 +31,8 @@ class ProgramCRUDTest extends TestCase
             'venue' => 'Main Hall',
         ];
 
-        // Create a new program
         $program = Program::create($data);
 
-        // Assert the program was created successfully
         $this->assertDatabaseHas('programs', [
             'name' => 'Tech Conference',
             'type' => 'Conference',
@@ -47,13 +44,10 @@ class ProgramCRUDTest extends TestCase
     /** @test */
     public function it_can_read_a_program()
     {
-        // Create a program
         $program = Program::factory()->create();
 
-        // Retrieve the program from the database
         $retrievedProgram = Program::find($program->id);
 
-        // Assert the program data is correct
         $this->assertEquals($program->name, $retrievedProgram->name);
         $this->assertEquals($program->description, $retrievedProgram->description);
         $this->assertEquals($program->type, $retrievedProgram->type);
@@ -63,16 +57,13 @@ class ProgramCRUDTest extends TestCase
     /** @test */
     public function it_can_update_a_program()
     {
-        // Create a program
         $program = Program::factory()->create();
 
-        // Update the program's data
         $program->update([
             'name' => 'Updated Program Name',
             'fees' => 150.00,
         ]);
 
-        // Assert the program was updated in the database
         $this->assertDatabaseHas('programs', [
             'id' => $program->id,
             'name' => 'Updated Program Name',
@@ -83,13 +74,10 @@ class ProgramCRUDTest extends TestCase
     /** @test */
     public function it_can_delete_a_program()
     {
-        // Create a program
         $program = Program::factory()->create();
 
-        // Delete the program
         $program->delete();
 
-        // Assert the program was deleted
         $this->assertDatabaseMissing('programs', [
             'id' => $program->id,
         ]);
