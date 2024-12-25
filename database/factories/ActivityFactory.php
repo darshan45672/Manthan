@@ -17,7 +17,19 @@ class ActivityFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'start_date' => $this->faker->dateTime,
+            'end_date' => $this->faker->dateTime,
+            'start_time' => $this->faker->time,
+            'end_time' => $this->faker->time,
+            'duration' => $this->faker->randomDigit,
+            'fees' => $this->faker->randomFloat(2, 0, 100),
+            'location' => $this->faker->word,
+            'is_featured' => $this->faker->boolean,
+            'address' => $this->faker->address,
+            'requires_registration' => $this->faker->boolean,
+            'venue' => $this->faker->word,
         ];
     }
 }
