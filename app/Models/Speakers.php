@@ -13,6 +13,6 @@ class Speakers extends Model
     protected $fillable = [ 'image' ,'name', 'designation', 'email', 'phone', 'linkedin', 'instagram', 'twitter', 'program_id' ] ;
 
     public function programs(){
-        return $this->hasMany(Program::class);
+        return $this->belongsTo(Program::class);
     }
 }

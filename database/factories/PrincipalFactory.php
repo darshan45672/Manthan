@@ -17,7 +17,12 @@ class PrincipalFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => \App\Models\User::factory(),
+            'college_id' => \App\Models\College::factory(),
+            'qualification' => ['PhD'],
+            'experience' => fake()->numberBetween(5, 30),
+            'specialization' => ['Computer Science', 'Data Science'],
+            'joining_date' => $this->faker->dateTime(),
         ];
     }
 }

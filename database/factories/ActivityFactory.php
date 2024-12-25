@@ -17,19 +17,17 @@ class ActivityFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->sentence,
+            'student_id' => $this->faker->randomDigitNotNull,
+            'activity_type_id' => \App\Models\ActivityType::factory(),
+            'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
+            'program_expected_outcomes_id' => \App\Models\ProgramExpectedOutcomes::factory(),
             'start_date' => $this->faker->dateTime,
             'end_date' => $this->faker->dateTime,
-            'start_time' => $this->faker->time,
-            'end_time' => $this->faker->time,
-            'duration' => $this->faker->randomDigit,
-            'fees' => $this->faker->randomFloat(2, 0, 100),
-            'location' => $this->faker->word,
-            'is_featured' => $this->faker->boolean,
-            'address' => $this->faker->address,
-            'requires_registration' => $this->faker->boolean,
-            'venue' => $this->faker->word,
+            'hours' => $this->faker->randomFloat(2, 0, 100),
+            'file' => $this->faker->word,
+            'certificate' => $this->faker->word,
+            'status' => $this->faker->word,
         ];
     }
 }
