@@ -26,8 +26,6 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
           coverage: none
-      - name: Update Composer dependencies
-        run: composer update --prefer-dist --no-interaction --no-progress
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
       - name: Copy environment file
@@ -45,9 +43,11 @@ jobs:
       - name: Setup SQLite Database
         run: |
           touch database/database.sqlite
-          php artisan migrate --force
+          php artisan migrate --force --database=sqlite
+      - name: Seed Database
+        run: php artisan db:seed --force
       - name: Execute tests
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-        run: vendor/bin/pest
+        run: vendor/bin/pest --verbose
