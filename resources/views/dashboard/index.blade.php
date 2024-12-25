@@ -7,7 +7,7 @@
     <div class="row g-4">
         <div class="col-12 col-xxl-12 ">
             <div class="mb-8">
-                <h2 class="mb-2">Student Dahboard</h2>
+                <h2 class="mb-2">Student Dashboard</h2>
                 <h5 class="text-body-tertiary fw-semibold">Track your progress</h5>
             </div>
             <div class="row align-items-center g-4">

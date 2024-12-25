@@ -390,13 +390,13 @@
             <div class="row gy-xl-0 gy-4 justify-content-center">
                 @foreach ($colleges as $college)
                 <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="team-item-2 wow fade-in-bottom" data-wow-delay="200ms">
+                    <div class="team-item-2 bd-dark wow fade-in-bottom" data-wow-delay="200ms">
                         <div class="team-thumb">
                             <img src="{{ Storage::url($college->logo) }}" alt="{{ $college->name }}">
                             <div class="team-content">
                                 <div class="instructor-info">
-                                    <h3 class="title">{{ $college->name }}</h3>
-                                    <span>{{ $college->college_code }}</span>
+                                    <h3 class="title text-dark">{{ $college->name }}</h3>
+                                    <span class="text-dark">{{ $college->college_code }}</span>
                                 </div>
                                 <div class="team-social">
                                     <div class="expand">

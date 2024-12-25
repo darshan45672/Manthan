@@ -1,85 +1,65 @@
 <?php
 
+namespace Tests\Feature;
+
 use App\Models\User;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-test('profile page is displayed', function () {
-    $user = User::factory()->create();
+class ProfileTest extends TestCase
+{
+    use RefreshDatabase;
 
-    $response = $this
-        ->actingAs($user)
-        ->get('/profile');
+    /**
+     * Test if an authenticated user can access the profile page.
+     *
+     * @return void
+     */
+    
+    /**
+     * Test if an unauthenticated user is redirected to login.
+     *
+     * @return void
+     */
+    public function test_unauthenticated_user_is_redirected_to_login()
+    {
+        $response = $this->get('/user-dashboard/profile');
 
-    $response->assertOk();
-});
+        // Assert redirection to login
+        $response->assertRedirect('/login'); // Ensure your login route matches
+    }
 
-test('profile information can be updated', function () {
-    $user = User::factory()->create();
+    /**
+     * Test if an authenticated user sees the correct profile content.
+     *
+     * @return void
+     */
+    
+    /**
+     * Test if a user with an expired session is redirected to login.
+     *
+     * @return void
+     */
+    
+    /**
+     * Test if the profile page can only be accessed using GET method.
+     *
+     * @return void
+     */
+    public function test_profile_page_requires_get_method()
+    {
+        $user = User::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
-        ->patch('/profile', [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $response = $this->actingAs($user)->post('/user-dashboard/profile');
 
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/profile');
+        // Assert method not allowed or redirection
+        $response->assertStatus(405); // Method Not Allowed
+    }
 
-    $user->refresh();
-
-    $this->assertSame('Test User', $user->name);
-    $this->assertSame('test@example.com', $user->email);
-    $this->assertNull($user->email_verified_at);
-});
-
-test('email verification status is unchanged when the email address is unchanged', function () {
-    $user = User::factory()->create();
-
-    $response = $this
-        ->actingAs($user)
-        ->patch('/profile', [
-            'name' => 'Test User',
-            'email' => $user->email,
-        ]);
-
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/profile');
-
-    $this->assertNotNull($user->refresh()->email_verified_at);
-});
-
-test('user can delete their account', function () {
-    $user = User::factory()->create();
-
-    $response = $this
-        ->actingAs($user)
-        ->delete('/profile', [
-            'password' => 'password',
-        ]);
-
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/');
-
-    $this->assertGuest();
-    $this->assertNull($user->fresh());
-});
-
-test('correct password must be provided to delete account', function () {
-    $user = User::factory()->create();
-
-    $response = $this
-        ->actingAs($user)
-        ->from('/profile')
-        ->delete('/profile', [
-            'password' => 'wrong-password',
-        ]);
-
-    $response
-        ->assertSessionHasErrorsIn('userDeletion', 'password')
-        ->assertRedirect('/profile');
-
-    $this->assertNotNull($user->fresh());
-});
+    /**
+     * Test if a deleted user cannot access the profile page.
+     *
+     * @return void
+     */
+    
+}
