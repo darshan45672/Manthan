@@ -39,13 +39,15 @@
     <div class="row justify-content-between d-flex align-items-end mb-9 me-0 g-4">
         @foreach ($events as $event)
         <a href="{{ route('events.show', $event->id) }}" style="text-decoration: none" target="_blank" >
-            <div class="card" style="max-width:20rem;">
-                <img class="card-img-top pt-2" src="{{ Storage::url($event->banner) }}" alt="{{ $event->name }}">
-                <center>
-                    <h3 class="mt-2 mb-0">{{ $event->name }}</h3>
-                </center>
-                <div class="card-body d-flex flex-column  justify-content-center">
-                    <a href="{{ route('events.show', $event->id) }}" class="btn btn-success" target="_blank">View Event</a>
+                <div class="col-md-4">
+                <div class="card" style="max-width:20rem;">
+                    <img class="card-img-top pt-2" src="{{ Storage::url($event->banner) }}" alt="{{ $event->name }}">
+                    <center>
+                        <h3 class="mt-2 mb-0">{{ $event->name }}</h3>
+                    </center>
+                    <div class="card-body d-flex flex-column  justify-content-center">
+                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-success" target="_blank">View Event</a>
+                    </div>
                 </div>
             </div>
         </a>

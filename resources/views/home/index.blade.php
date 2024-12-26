@@ -117,7 +117,7 @@
                                         <li><i class="fa-light fa-eye"></i>{{ $event->fees }}</li>
                                     </ul>
                                     <div class="course-author-box">
-                                        @if ($event->speakers->isNotEmpty())
+                                        @if ($event->speakers)
                                             @php
                                                 $speaker = $event->speakers->first();
                                             @endphp
@@ -210,7 +210,7 @@
                                     <li><i class="fa-light fa-eye"></i>{{ $event->fees }}</li>
                                 </ul>
                                 <div class="course-author-box">
-                                    @if ($event->speakers->isNotEmpty())
+                                    @if ($event->speakers)
                                         @php
                                             $speaker = $event->speakers->first();
                                         @endphp
