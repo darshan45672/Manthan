@@ -1,4 +1,4 @@
-name: Mantan
+name: integration-test
 on:
   push:
     branches:
