@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\BoardPresidentsExporter;
 use App\Filament\Resources\BoardPresidentsResource\Pages;
 use App\Filament\Resources\BoardPresidentsResource\RelationManagers;
 use App\Models\BoardPresidents;
@@ -13,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -44,12 +46,16 @@ class BoardPresidentsResource extends Resource
             ->columns([
                 TextColumn::make('user.name'),
                 TextColumn::make('user.role'),
+                TextColumn::make('board.name'),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 EditAction::make(),
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(BoardPresidentsExporter::class),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
