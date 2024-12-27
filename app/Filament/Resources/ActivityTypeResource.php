@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Exports\ActivityTypesExport;
+use App\Filament\Exports\ActivityTypeExporter;
 use App\Filament\Resources\ActivityTypeResource\Pages;
 use App\Filament\Resources\ActivityTypeResource\RelationManagers;
 use App\Filament\Resources\ActivityTypeResource\RelationManagers\ActivitiesRelationManager;
@@ -21,6 +22,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -80,6 +82,8 @@ class ActivityTypeResource extends Resource
                     '4' => '4',
                     '5' => '5',
                 ])->label('Credits'),
+            ])->headerActions([
+                ExportAction::make()->exporter(ActivityTypeExporter::class),
             ])
             ->actions([
                 ActionGroup::make([
@@ -91,10 +95,6 @@ class ActivityTypeResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('exportActivityType')->label('Export Activity Types')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new ActivityTypesExport($records, 1), 'activity-types.xlsx');
-                    })
                 ]),
             ]);
     }

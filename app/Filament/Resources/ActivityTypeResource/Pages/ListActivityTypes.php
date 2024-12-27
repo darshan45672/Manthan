@@ -17,18 +17,8 @@ class ListActivityTypes extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if(ActivityType::count()){
-            return[
-                CreateAction::make(),
-                Action::make('exportActivity-Types')->label('Export Activity Type')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new ActivityTypesExport($records, 0), 'activity-types.xlsx');
-                    })
-            ];
-        }else{
-            return[
-                CreateAction::make(),
-            ];
-        }
+        return [
+            CreateAction::make(),
+        ];
     }
 }

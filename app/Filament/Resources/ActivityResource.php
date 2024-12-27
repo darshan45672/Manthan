@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Exports\ActivitiesExport;
+use App\Filament\Exports\ActivityExporter;
 use App\Filament\Resources\ActivityResource\Pages;
 use App\Filament\Resources\ActivityResource\RelationManagers;
 use App\Models\Activity;
@@ -25,6 +26,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\SelectColumn;
@@ -129,6 +131,9 @@ class ActivityResource extends Resource
                 ])->label('Activity Status'),
                 SelectFilter::make('activity_type_id')->relationship('activityType', 'title'),
             ])
+            ->headerActions([
+                ExportAction::make()->exporter(ActivityExporter::class),
+            ])
             ->actions([
                 ActionGroup::make([
                     ViewAction::make(),
@@ -139,10 +144,6 @@ class ActivityResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('exportActivity')->label('Export Activities')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new ActivitiesExport($records, 1), 'student-activities.xlsx');
-                    })
                 ]),
             ]);
     }
