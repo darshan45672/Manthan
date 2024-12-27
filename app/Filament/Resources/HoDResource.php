@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Exports\HODsExport;
+use App\Filament\Exports\HoDExporter;
 use App\Filament\Resources\HoDResource\Pages;
 use App\Filament\Resources\HoDResource\RelationManagers;
 use App\Models\HoD;
@@ -23,6 +24,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -120,6 +122,9 @@ class HoDResource extends Resource
             ->filters([
                 //
             ])
+            ->headerActions([
+                ExportAction::make()->exporter(HoDExporter::class),
+            ])
             ->actions([
                 ActionGroup::make([
                     ViewAction::make(),
@@ -130,11 +135,6 @@ class HoDResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('export')->label('Export')
-                    ->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records){
-                        return Excel::download(new HODsExport($records, 1), 'HoDs.xlsx');  
-                    })
                 ]),
             ]);
     }
