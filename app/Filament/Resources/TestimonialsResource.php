@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\TestimonialsExporter;
 use App\Filament\Resources\TestimonialsResource\Pages;
 use App\Filament\Resources\TestimonialsResource\RelationManagers;
 use App\Models\Testimonials;
@@ -18,6 +19,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -70,6 +72,9 @@ class TestimonialsResource extends Resource
                 ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(TestimonialsExporter::class),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

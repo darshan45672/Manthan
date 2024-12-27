@@ -17,18 +17,8 @@ class ListPrinciples extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if (Principal::count()) {
-            return [
-                CreateAction::make(),
-                Action::make('exportPrinciple')->label('Export Principals')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new PrinciplesExport($records, 0), 'principals.xlsx');
-                    })
-            ];
-        }else{
-            return [
-                CreateAction::make(),
-            ];
-        }
+        return [
+            CreateAction::make(),
+        ];
     }
 }
