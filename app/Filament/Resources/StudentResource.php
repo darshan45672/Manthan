@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use App\Exports\StudentsExport;
 use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Filament\Resources\StudentResource\RelationManagers\ActivitiesRelationManager;
@@ -61,8 +60,7 @@ class StudentResource extends Resource
                 ])->columnSpan(1),
                 Group::make()->schema([
                     Section::make('Student Details')->schema([
-                        TextInput::make('usn')->required()
-                            ->rules(['regex:/^[0-9]{1}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}[0-9]{3}$/'])
+                        TextInput::make('usn')->required()->rules(['regex:/^[0-9]{1}[A-Za-z]{2}[0-9]{2}[A-Za-z]{2}[0-9]{3}$/'])
                             ->validationAttribute('USN')->unique(ignoreRecord: true)
                             ->helperText('Ex: 4JK21CS016 or 4jk21cs016'),
                         Select::make('semester')->required()->options([
@@ -114,11 +112,6 @@ class StudentResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('export students')->label('Export Students')
-                        ->icon('heroicon-o-document-arrow-down')
-                        ->action(function (Collection $records) {
-                            return Excel::download(new StudentsExport($records, 1), 'students.xlsx');
-                        })
                 ]),
             ]);
     }
