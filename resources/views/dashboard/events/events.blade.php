@@ -38,17 +38,20 @@
 
     <div class="row justify-content-around align-items-center mb-9 me-3 g-4">
         @foreach ($events as $event)
-        <a href="{{ route('events.show', $event->id) }}" target="_blank" style="text-decoration: none" >
-            <div class="card" style="max-width:20rem;">
-                <img class="card-img-top pt-2" src="{{ Storage::url($event->banner) }}" alt="{{ $event->name }}">
-                <center>
-                    <h3 class="mt-2 mb-0">{{ $event->name }}</h3>
-                </center>
-                <div class="card-body d-flex flex-column  justify-content-center">
-                    <a href="{{ route('events.show', $event->id) }}" class="btn btn-success" target="_blank">View Event</a>
+        <div class="col-md-4">
+            <a href="{{ route('events.show', $event->id) }}" target="_blank" style="text-decoration: none">
+                <div class="card" style="max-width:20rem;">
+                    <img class="card-img-top pt-2" src="{{ Storage::url($event->banner) }}" alt="{{ $event->name }}">
+                    <center>
+                        <h3 class="mt-2 mb-0">{{ $event->name }}</h3>
+                    </center>
+                    <div class="card-body d-flex flex-column  justify-content-center">
+                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-success" target="_blank">View
+                            Event</a>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
         @endforeach
     </div>
 </div>
