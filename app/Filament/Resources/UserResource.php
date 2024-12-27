@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Exports\UsersExport;
+use App\Filament\Exports\UserExporter;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
@@ -28,6 +29,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\ImageColumn;
@@ -108,14 +110,12 @@ class UserResource extends Resource
                 ]),
                 // Action::make('Download pdf')->icon('heroicon-o-user'),
             ])
+            ->headerActions([
+                ExportAction::make()->exporter(UserExporter::class),
+            ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('export')->label('Export')
-                    ->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records){
-                        return Excel::download(new UsersExport($records, 1), 'users.xlsx');  
-                    })
                 ]),
             ]);
     }

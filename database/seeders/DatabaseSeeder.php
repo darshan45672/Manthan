@@ -24,13 +24,15 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin'),
             'is_admin' => true,
         ]);
+
         User::factory()->create([
             'name' => 'darshan',
             'email' => 'drshnbhandary@gmail.com',
             'password' => Hash::make('12345678'),
             'is_admin' => false,
         ]);
-        User::factory(5)->create();
+        
+        User::factory(2000)->create();
         College::factory(5)->create();
         Department::factory(5)->create();
     }
