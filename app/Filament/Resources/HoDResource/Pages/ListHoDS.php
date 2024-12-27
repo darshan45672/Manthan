@@ -17,18 +17,8 @@ class ListHoDS extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if (HoD::count()) {
-            return [
-                CreateAction::make(),
-                Action::make('exportHod')->label('Export HoDs')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new HODsExport($records, 0), 'HODs.xlsx');
-                    })
-            ];
-        }else{
-            return [
-                CreateAction::make(),
-            ];
-        }
+        return [
+            CreateAction::make(),
+        ];
     }
 }
