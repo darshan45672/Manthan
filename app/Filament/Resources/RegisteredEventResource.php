@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Exports\Registeration;
+use App\Filament\Exports\RegisteredEventsExporter;
 use App\Filament\Resources\RegisteredEventResource\Pages;
 use App\Filament\Resources\RegisteredEventResource\RelationManagers;
 use App\Models\RegisteredEvents;
@@ -21,6 +22,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -85,14 +87,12 @@ class RegisteredEventResource extends Resource
                     DeleteAction::make(),
                 ]),
             ])
+            ->headerActions([
+                ExportAction::make()->exporter(RegisteredEventsExporter::class),
+            ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('exportRegisterations')->label('Export Registerations')
-                    ->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records){
-                        return Excel::download(new Registeration($records, 1), 'Registerations.xlsx');  
-                    })
                 ]),
             ]);
     }

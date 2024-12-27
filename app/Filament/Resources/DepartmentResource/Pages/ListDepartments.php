@@ -17,18 +17,8 @@ class ListDepartments extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if (Department::count()) {
-            return [
-                CreateAction::make(),
-                Action::make('exportHod')->label('Export Departments')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new DepartmentsExport($records, 0), 'Departments.xlsx');
-                    })
-            ];
-        }else{
-            return [
-                CreateAction::make(),
-            ];
-        }
+        return [
+            CreateAction::make(),
+        ];
     }
 }

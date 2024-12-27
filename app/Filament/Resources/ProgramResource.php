@@ -124,11 +124,6 @@ class ProgramResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('export')->label('Export')
-                    ->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records){
-                        return Excel::download(new ProgramsExport($records, 1), 'Programs.xlsx');  
-                    })
                 ]),
             ]);
     }

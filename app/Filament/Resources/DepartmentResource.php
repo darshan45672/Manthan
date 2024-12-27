@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Exports\DepartmentsExport;
+use App\Filament\Exports\DepartmentExporter;
 use App\Filament\Resources\CollegeResource\RelationManagers\FacultiesRelationManager;
 use App\Filament\Resources\DepartmentResource\Pages;
 use App\Filament\Resources\DepartmentResource\RelationManagers;
@@ -22,6 +23,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -74,15 +76,12 @@ class DepartmentResource extends Resource
                     EditAction::make(),
                     DeleteAction::make(),
                 ]),
+            ])->headerActions([
+                ExportAction::make()->exporter(DepartmentExporter::class),
             ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('export')->label('Export')
-                    ->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records){
-                        return Excel::download(new DepartmentsExport($records, 1), 'Departments.xlsx');  
-                    })
                 ]),
             ]);
     }
