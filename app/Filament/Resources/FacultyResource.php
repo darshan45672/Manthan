@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\FacultyExporter;
 use App\Filament\Resources\FacultyResource\Pages;
 use App\Filament\Resources\FacultyResource\RelationManagers;
 use App\Models\Faculty;
@@ -20,6 +21,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -118,7 +120,7 @@ class FacultyResource extends Resource
                 TextColumn::make('designation')->searchable(),
                 TextColumn::make('qualification')->searchable(),
                 TextColumn::make('experience')->searchable(),
-                TextColumn::make('specialization')->searchable(),
+                // TextColumn::make('specialization')->searchable(),
                 IconColumn::make('status')->boolean(),
                 IconColumn::make('is_cordinator')->boolean(),
                 TextColumn::make('joining_date')->searchable()->toggleable(isToggledHiddenByDefault: true),
@@ -128,6 +130,9 @@ class FacultyResource extends Resource
             ])
             ->filters([
                 //
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(FacultyExporter::class),
             ])
             ->actions([
                 ActionGroup::make([
