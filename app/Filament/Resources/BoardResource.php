@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\BoardExporter;
 use App\Filament\Resources\BoardResource\Pages;
 use App\Filament\Resources\BoardResource\RelationManagers;
 use App\Filament\Resources\BoardResource\RelationManagers\MembersRelationManager;
@@ -18,6 +19,8 @@ use Filament\Tables;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -48,21 +51,17 @@ class BoardResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
-                TextColumn::make('description')
-                    ->searchable()
-                    ->sortable()
+                TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('description')->searchable()->sortable()
                     ->formatStateUsing(fn (string $state): string => strip_tags($state)),
-                TextColumn::make('created_at')->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')->dateTime()->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('is_active')->label('is Active')->boolean(),
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
+            ])->headerActions([
+                ExportAction::make()->exporter(BoardExporter::class),
             ])
             ->actions([
                 EditAction::make(),
