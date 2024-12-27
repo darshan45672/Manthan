@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Exports\CollegesExport;
+use App\Filament\Exports\CollegeExporter;
 use App\Filament\Resources\CollegeResource\Pages;
 use App\Filament\Resources\CollegeResource\RelationManagers;
 use App\Filament\Resources\CollegeResource\RelationManagers\FacultiesRelationManager;
@@ -23,6 +24,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -71,7 +73,9 @@ class CollegeResource extends Resource
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                
+                //
+            ])->headerActions([
+                ExportAction::make()->exporter(CollegeExporter::class),
             ])
             ->actions([
                 ActionGroup::make([
@@ -83,10 +87,6 @@ class CollegeResource extends Resource
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
-                    BulkAction::make('exportCollege')->label('Export Colleges')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new CollegesExport($records, 1), 'colleges.xlsx');
-                    })
                 ]),
             ]);
     }

@@ -17,19 +17,8 @@ class ListColleges extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if(College::count()){
-            return[
-                CreateAction::make(),
-                Action::make('exportCollege')->label('Export College')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new CollegesExport($records, 0), 'colleges.xlsx');
-                    })
-            ];
-        }else{
-            return[
-                CreateAction::make(),
-            ];
-        }
+        return[
+            CreateAction::make(),
+        ];
     }
-
 }
