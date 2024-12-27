@@ -17,18 +17,8 @@ class ListRegisteredEvents extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if(RegisteredEvents::count()){
-            return[
-                CreateAction::make(),
-                Action::make('export')->label('Export Registerations')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new Registeration($records, 0), 'Registerations.xlsx');
-                    })
-            ];
-        }else{
-            return[
-                CreateAction::make(),
-            ];
-        }
+        return [
+            CreateAction::make(),
+        ];
     }
 }

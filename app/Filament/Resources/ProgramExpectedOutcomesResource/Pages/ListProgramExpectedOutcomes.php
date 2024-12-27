@@ -17,18 +17,8 @@ class ListProgramExpectedOutcomes extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if(ProgramExpectedOutcomes::count()){
-            return[
-                CreateAction::make(),
-                Action::make('exportPOE')->label('Export PEOs')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new ProgramExpectedOutcomesExport($records, 0), 'PEOs.xlsx');
-                    })
-            ];
-        }else{
             return[
                 CreateAction::make(),
             ];
         }
-    }
 }

@@ -18,10 +18,6 @@ class ListStudents extends ListRecords
     {
         return [
             CreateAction::make(),
-            // Action::make('exportStudents')->label('Export Students')->icon('heroicon-o-document-arrow-down')
-            // ->action(function (Collection $records){
-            //     return Excel::download(new StudentsExport($records, 0), 'students.xlsx');  
-            // })
         ];
     }
 }

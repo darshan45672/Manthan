@@ -4,6 +4,7 @@ namespace App\Filament\Resources\BoardResource\Pages;
 
 use App\Filament\Resources\BoardResource;
 use Filament\Actions;
+use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListBoards extends ListRecords
@@ -13,7 +14,7 @@ class ListBoards extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

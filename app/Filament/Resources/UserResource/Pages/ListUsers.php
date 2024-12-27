@@ -21,42 +21,6 @@ class ListUsers extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        // if (User::count()) {
-        //     return [
-        //        CreateAction::make(),
-        //        Action::make('importUsers')->label('Import Users')->icon('heroicon-o-user-group')
-        //             ->form([
-        //                 FileUpload::make('attachment')->directory('xlsx')->preserveFilenames(),
-        //             ])->color('danger')
-        //             ->action(function (array $data) {
-        //                 // $file = public_path('storage'.$data['attachment']);
-        //                 $file = storage_path('app/public/' . $data['attachment']);
-        //                 // dd($file, file_exists($file));
-        //                 // dd($file);
-        //                 Excel::import(new UsersImport, $file);
-        //                 Notification::make()->title('Users Imported')->success()->send();
-        //             }),
-        //        Action::make('exportUsers')->label('Export Users')->icon('heroicon-o-document-arrow-down')
-        //             ->action(function (Collection $records) {
-        //                 return Excel::download(new UsersExport($records, 0), 'users.xlsx');
-        //             }),
-        //     ];
-        // } else {
-        //     return [
-        //         CreateAction::make(),
-        //         Action::make('importUsers')->label('Import Users')->icon('heroicon-o-user-group')
-        //             ->form([
-        //                 FileUpload::make('attachment')->directory('xlsx')->preserveFilenames(),
-        //             ])->color('danger')
-        //             ->action(function (array $data) {
-        //                 $file = storage_path('app/public/' . $data['attachment']);
-        //                 Excel::import(new UsersImport, $file);
-
-        //                 Notification::make()->title('Users Imported')->success()->send();
-        //             }),
-        //     ];
-        // }
-
         return [
             CreateAction::make(),
         ];

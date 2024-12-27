@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Exports\ProgramsExport;
+use App\Filament\Exports\ProgramExporter;
 use App\Filament\Resources\ProgramResource\Pages;
 use App\Filament\Resources\ProgramResource\RelationManagers;
 use App\Filament\Resources\ProgramResource\RelationManagers\ActivitiesRelationManager;
@@ -31,6 +32,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -113,6 +115,9 @@ class ProgramResource extends Resource
             ])
             ->filters([
                 //
+            ])
+            ->headerActions([
+                ExportAction::make()->exporter(ProgramExporter::class),
             ])
             ->actions([
                 ActionGroup::make([

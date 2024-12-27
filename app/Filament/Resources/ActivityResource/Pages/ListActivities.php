@@ -17,18 +17,8 @@ class ListActivities extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if(Activity::count()){
-            return[
-                CreateAction::make(),
-                Action::make('exportActivity')->label('Export Student Activities')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new ActivitiesExport($records, 0), 'student-activities.xlsx');
-                    })
-            ];
-        }else{
-            return[
-                CreateAction::make(),
-            ];
-        }
+        return [
+            CreateAction::make(),
+        ];
     }
 }
