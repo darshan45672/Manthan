@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\CategoryExporter;
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
@@ -17,6 +18,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -70,6 +72,8 @@ class CategoryResource extends Resource
                     EditAction::make(),
                     DeleteAction::make(),
                 ]),
+            ])->headerActions([
+                ExportAction::make()->exporter(CategoryExporter::class),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

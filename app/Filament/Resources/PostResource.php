@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\PostExporter;
 use App\Filament\Resources\PostResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
@@ -21,6 +22,7 @@ use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -33,9 +35,7 @@ use Illuminate\Support\Str;
 class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
-
     protected static ?string $navigationLabel = 'Blogs';
     protected static ?string $slug = 'blogs-and-news';
     protected static ?string $modelLabel = 'Blog';
@@ -79,12 +79,12 @@ class PostResource extends Resource
                 //
             ])
             ->actions([
-                // ActionGroup::make([
-                    ViewAction::make(),
-                    EditAction::make(),
-                    DeleteAction::make(),
-                // ]),
-            ])
+                ViewAction::make(),
+                EditAction::make(),
+                DeleteAction::make(),
+            ])->headerActions([
+                    ExportAction::make()->exporter(PostExporter::class),
+                ])
             ->bulkActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
