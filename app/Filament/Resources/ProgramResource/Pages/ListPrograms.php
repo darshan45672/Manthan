@@ -17,18 +17,8 @@ class ListPrograms extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        if(Program::count()){
-            return[
-                CreateAction::make(),
-                Action::make('exportProgram')->label('Export Program')->icon('heroicon-o-document-arrow-down')
-                    ->action(function (Collection $records) {
-                        return Excel::download(new ProgramsExport($records, 0), 'Programs.xlsx');
-                    })
-            ];
-        }else{
-            return[
-                CreateAction::make(),
-            ];
-        }
+        return [
+            CreateAction::make(),
+        ];
     }
 }
