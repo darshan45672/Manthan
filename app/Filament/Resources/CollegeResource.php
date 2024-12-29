@@ -67,7 +67,10 @@ class CollegeResource extends Resource
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('phone')->searchable(),
                 ImageColumn::make('logo'),
-                TextColumn::make('website')->searchable(),
+                TextColumn::make('website')->searchable()
+                ->formatStateUsing(fn () => 'View site')
+                ->url(fn ($record) => $record->website, true)
+                ->openUrlInNewTab()->label('Website'),
                 TextColumn::make('college_code')->searchable(),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
