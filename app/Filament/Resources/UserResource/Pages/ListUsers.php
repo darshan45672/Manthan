@@ -4,6 +4,7 @@ namespace App\Filament\Resources\UserResource\Pages;
 
 use App\Exports\UsersExport;
 use App\Filament\Resources\UserResource;
+use App\Filament\Widgets\UserChartWidget;
 use App\Imports\UsersImport;
 use App\Models\User;
 use Filament\Actions\CreateAction;
@@ -23,6 +24,13 @@ class ListUsers extends ListRecords
     {
         return [
             CreateAction::make(),
+        ];
+    }
+    
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            UserChartWidget::class,
         ];
     }
 }
