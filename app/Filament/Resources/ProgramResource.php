@@ -106,12 +106,16 @@ class ProgramResource extends Resource
             ->columns([
                 TextColumn::make('name')->searchable(),
                 TextColumn::make('type')->searchable(),
-                TextColumn::make('start_date')->searchable(),
-                TextColumn::make('end_date')->searchable(),
+                TextColumn::make('start_date')->date('d M Y')->searchable()->sortable(),
+                TextColumn::make('end_date')->date('d M Y')->searchable(),
                 TextColumn::make('duration')->searchable(),
                 TextColumn::make('fees')->searchable(),
-                TextColumn::make('location')->searchable(),
-                TextColumn::make('organiser')->searchable(),
+                TextColumn::make('location')->searchable()
+                ->formatStateUsing(fn () => 'View Location')
+                ->url(fn ($record) => $record->location, true)
+                ->openUrlInNewTab()->label('Location'),
+                // TextColumn::make('organiser')->searchable(),
+                TextColumn::make('start_time')->searchable(),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
             ])
