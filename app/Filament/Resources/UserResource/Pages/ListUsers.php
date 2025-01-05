@@ -29,8 +29,14 @@ class ListUsers extends ListRecords
     
     protected function getHeaderWidgets(): array
     {
+        /**
+         * Get list of table headers and their configurations for displaying users.
+         * This method defines the structure and behavior of the table columns in the users list view.
+         *
+         * @return array An array of table column configurations including sorting, filtering, and display options
+         */
         return [
-            UserChartWidget::class,
+            UserChartWidget::make(),
         ];
     }
 }
