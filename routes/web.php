@@ -9,6 +9,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HoDController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
@@ -66,5 +67,14 @@ Route::post('/user-dashboard/delete-faculty/{id}',[FacultyController::class,'des
 Route::get('/user-dashboard/hod',[HoDController::class,'index'])->name('user.hod')->middleware('auth');
 Route::get('/user-dashboard/add-hod',[HoDController::class,'create'])->name('user.hod.create')->middleware('auth');
 Route::post('/user-dashboard/add-hod',[HoDController::class,'store'])->name('user.hod.store')->middleware('auth');
+
+// Route::get('auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('google.login');
+// Route::get('auth/google-callback', [SocialiteController::class, 'handleGoogleCallback'])->name('google.callback');
+// Route::get('auth/github', [SocialiteController::class, 'redirectToGitHub'])->name('github.login');
+// Route::get('auth/github-callback', [SocialiteController::class, 'handleGithubCallback'])->name('github.callback');
+
+Route::get('/auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('social.login');
+Route::get('/auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('social.callback');
+
 
 require __DIR__.'/auth.php';
