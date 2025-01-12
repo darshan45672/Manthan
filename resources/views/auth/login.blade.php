@@ -15,17 +15,14 @@
                     <h3 class="text-body-highlight">Sign In</h3>
                     <p class="text-body-tertiary">Get access to your account</p>
                 </div>
-                <form action="" method="POST">
-                    @csrf
-                    <button type="submit" class="btn btn-phoenix-secondary w-100 mb-3">
-                        <span class="fab fa-google text-light me-2 fs-9"></span>
-                        Sign in with Google
-                    </button>
-                </form>
-                <button class="btn btn-phoenix-secondary w-100">
+                <a href="{{ route('social.login', 'google') }}" class="btn btn-phoenix-secondary w-100 mb-3">
+                    <span class="fab fa-google text-light me-2 fs-9"></span>
+                    Sign in with Google
+                </a>
+                <a href="{{ route('social.login', 'github') }}" class="btn btn-phoenix-secondary w-100">
                     <span class="fab fa-github text-light me-2 fs-9"></span>
                     Sign in with GitHub
-                </button>
+                </a>
                 <div class="position-relative">
                     <hr class="bg-body-secondary mt-5 mb-4" />
                     <div class="divider-content-center">or use email</div>
