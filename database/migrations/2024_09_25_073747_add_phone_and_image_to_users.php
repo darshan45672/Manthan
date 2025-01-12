@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->enum('role', ['student', 'faculty', 'HoD', 'Principle'])->default('student');
             $table->text('address')->nullable();
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
         });
     }
 

@@ -25,7 +25,7 @@
             <div class="position-relative bg-body-quaternary rounded-circle cursor-pointer d-flex flex-center mb-xxl-7">
                 <div class="avatar avatar-5xl">
                     <img class="rounded-circle rounded-circle img-thumbnail shadow-sm border-0"
-                        src="{{ Storage::url(Auth::user()->image) }}" alt="{{ Auth::user()->name }}" />
+                        src="{{ filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}" alt="{{ Auth::user()->name }}" />
                 </div>
                 <label class="w-100 h-100 position-absolute z-1" for="upload-porfile-picture"></label>
             </div>
