@@ -199,7 +199,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="floatingInputPhone" type="tel" placeholder="phone" name="phone"
-                        value="{{ $user->phone }}" />
+                        value="{{ $user->phone  ?? '' }}" />
                     <label for="floatingInputPhone">Phone</label>
                 </div>
             </div>
@@ -207,7 +207,7 @@
                 <div class="form-floating">
                     <select class="form-select" id="floatingSelectInstitution" name="college">
                         @foreach ($college as $item)
-                        <option value="{{ $item->id }}" {{ old('college', $user->faculty->college->id) == $item->id ?
+                        <option value="{{ $item->id }}" {{ old('college', $user->faculty->college->id  ?? '') == $item->id ?
                             'selected' : '' }}>
                             {{ $item->name }}
                         </option>
@@ -220,7 +220,7 @@
                     <select class="form-select @error('branch') is-invalid @enderror" id="floatingSelectBranch"
                         name="branch">
                         @foreach ($departments as $item)
-                        <option value="{{ $item->id }}" {{ old('branch', $user->faculty->department->id) == $item->id ?
+                        <option value="{{ $item->id }}" {{ old('branch', $user->faculty->department->id  ?? '') == $item->id ?
                             'selected' : '' }}>
                             {{ $item->name }}
                         </option>
@@ -234,11 +234,11 @@
                     <select class="form-select" id="floatingSelectDesignation" name="designation">
                         <option value="Proffesor" {{ Auth::user()->faculty->designation == 'Proffesor' ? 'selected' : ''
                             }} >Proffesor</option>
-                        <option value="Associate Proffesor" {{ Auth::user()->faculty->designation == 'Associate
+                        <option value="Associate Proffesor" {{ (Auth::user()->faculty->designation  ?? '') == 'Associate
                             Proffesor' ? 'selected' : '' }} >Associate Proffesor</option>
-                        <option value="Assistant Proffesor" {{ Auth::user()->faculty->designation == 'Assistant
+                        <option value="Assistant Proffesor" {{ (Auth::user()->faculty->designation  ?? '') == 'Assistant
                             Proffesor' ? 'selected' : '' }} >Assistant Proffesor</option>
-                        <option value="Guest Proffesor" {{ Auth::user()->faculty->designation == 'Guest Proffesor' ?
+                        <option value="Guest Proffesor" {{ (Auth::user()->faculty->designation  ?? '') == 'Guest Proffesor' ?
                             'selected' : '' }} >Guest Proffesor</option>
                     </select>
                     <label for="floatingSelectDesignationt">Designation</label>
@@ -247,21 +247,21 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="floatingInputExperience" type="text" placeholder="Experience"
-                        value="{{ $user->faculty->experience }}" name="expierience" />
+                        value="{{ $user->faculty->experience  ?? '' }}" name="expierience" />
                     <label for="floatingInputExperience">Experience</label>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="date-o-f-joining" type="date" name="join_date"
-                        value="{{ $user->faculty->joining_date ? \Carbon\Carbon::parse($user->faculty->joining_date)->format('Y-m-d') : '' }}" />
+                        value="{{ ($user->faculty->joining_date  ?? '') ? \Carbon\Carbon::parse($user->faculty->joining_date)->format('Y-m-d') : '' }}" />
                     <label class="form-label" for="date-o-f-joining">Date of Joining</label>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="date-o-f-leaving" type="date" name="leave_date"
-                        value="{{ $user->faculty->leaving_date ? \Carbon\Carbon::parse($user->faculty->leaving_date)->format('Y-m-d') : '' }}" />
+                        value="{{ ($user->faculty->leaving_date  ?? '')? \Carbon\Carbon::parse($user->faculty->leaving_date)->format('Y-m-d') : '' }}" />
                     <label class="form-label" for="date-o-f-leaving">Date of Leaving</label>
                 </div>
             </div>
@@ -280,7 +280,7 @@
 
                                 @foreach ($qualifications as $qualification)
                                 <option value="{{ $qualification }}" {{ in_array($qualification, old('qualification',
-                                    $user->faculty->qualification ?? [])) ? 'selected' : '' }}>
+                                    ($user->faculty->qualification  ?? '') ?? [])) ? 'selected' : '' }}>
                                     {{ $qualification }}
                                 </option>
                                 @endforeach
@@ -326,7 +326,7 @@
 
                                 @foreach ($specializations as $specialization)
                                 <option value="{{ $specialization }}" {{ in_array($specialization, old('specialization',
-                                    $user->faculty->specialization ?? [])) ? 'selected' : '' }}>
+                                   ( $user->faculty->specialization  ?? '') ?? [])) ? 'selected' : '' }}>
                                     {{ $specialization }}
                                 </option>
                                 @endforeach
@@ -342,7 +342,7 @@
                 <div class="form-floating">
                     <textarea class="form-control" id="floatingStudentAddress" placeholder="Leave a comment here"
                         style="height: 128px" name="address">
-                        {{ $user->address }}
+                        {{ $user->address  ?? '' }}
                     </textarea>
                     <label for="floatingStudentAddress">Address</label>
                 </div>
@@ -413,7 +413,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="floatingInputPhone" type="tel" placeholder="phone" name="phone"
-                        value="{{ $user->phone }}" />
+                        value="{{ $user->phone  ?? ''}}" />
                     <label for="floatingInputPhone">Phone</label>
                 </div>
             </div>
@@ -421,7 +421,7 @@
                 <div class="form-floating">
                     <select class="form-select" id="floatingSelectInstitution" name="college">
                         @foreach ($college as $item)
-                        <option value="{{ $item->id }}" {{ old('college', $user->hod->college->id) == $item->id ?
+                        <option value="{{ $item->id }}" {{ old('college', $user->hod->college->id  ?? '') == $item->id ?
                             'selected' : '' }}>
                             {{ $item->name }}
                         </option>
@@ -434,7 +434,7 @@
                     <select class="form-select @error('branch') is-invalid @enderror" id="floatingSelectBranch"
                         name="branch">
                         @foreach ($departments as $item)
-                        <option value="{{ $item->id }}" {{ old('branch', $user->hod->department->id) == $item->id ?
+                        <option value="{{ $item->id }}" {{ old('branch', $user->hod->department->id  ?? '') == $item->id ?
                             'selected' : '' }}>
                             {{ $item->name }}
                         </option>
@@ -457,21 +457,21 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="floatingInputExperience" type="text" placeholder="Experience"
-                        value="{{ $user->hod->experience }}" name="expierience" />
+                        value="{{ $user->hod->experience  ?? '' }}" name="expierience" />
                     <label for="floatingInputExperience">Experience</label>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="date-o-f-joining" type="date" name="join_date"
-                        value="{{ $user->hod->joining_date ? \Carbon\Carbon::parse($user->hod->joining_date)->format('Y-m-d') : '' }}" />
+                        value="{{ ($user->hod->joining_date  ?? '') ? \Carbon\Carbon::parse($user->hod->joining_date)->format('Y-m-d') : '' }}" />
                     <label class="form-label" for="date-o-f-joining">Date of Joining</label>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="date-o-f-leaving" type="date" name="leave_date"
-                        value="{{ $user->hod->leaving_date ? \Carbon\Carbon::parse($user->hod->leaving_date)->format('Y-m-d') : '' }}" />
+                        value="{{ ($user->hod->leaving_date  ?? '') ? \Carbon\Carbon::parse($user->hod->leaving_date)->format('Y-m-d') : '' }}" />
                     <label class="form-label" for="date-o-f-leaving">Date of Leaving</label>
                 </div>
             </div>
@@ -490,7 +490,7 @@
 
                                 @foreach ($qualifications as $qualification)
                                 <option value="{{ $qualification }}" {{ in_array($qualification, old('qualification',
-                                    $user->hod->qualification ?? [])) ? 'selected' : '' }}>
+                                    ($user->hod->qualification  ?? '')?? [])) ? 'selected' : '' }}>
                                     {{ $qualification }}
                                 </option>
                                 @endforeach
@@ -536,7 +536,7 @@
 
                                 @foreach ($specializations as $specialization)
                                 <option value="{{ $specialization }}" {{ in_array($specialization, old('specialization',
-                                    $user->hod->specialization ?? [])) ? 'selected' : '' }}>
+                                    ($user->hod->specialization  ?? '') ?? [])) ? 'selected' : '' }}>
                                     {{ $specialization }}
                                 </option>
                                 @endforeach
@@ -552,7 +552,7 @@
                 <div class="form-floating">
                     <textarea class="form-control" id="floatingStudentAddress" placeholder="Leave a comment here"
                         style="height: 128px" name="address">
-                        {{ $user->address }}
+                        {{ $user->address  ?? ''}}
                     </textarea>
                     <label for="floatingStudentAddress">Address</label>
                 </div>
@@ -609,7 +609,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="floatingInputName" type="text" placeholder="Name"
-                        value="{{ $user->name }}" name="name" />
+                        value="{{ $user->name  ?? '' }}" name="name" />
                     <label for="floatingInputName">Name</label>
                 </div>
             </div>
@@ -623,7 +623,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="floatingInputPhone" type="tel" placeholder="phone" name="phone"
-                        value="{{ $user->phone }}" />
+                        value="{{ $user->phone  ?? '' }}" />
                     <label for="floatingInputPhone">Phone</label>
                 </div>
             </div>
@@ -631,7 +631,7 @@
                 <div class="form-floating">
                     <select class="form-select" id="floatingSelectInstitution" name="college">
                         @foreach ($college as $item)
-                        <option value="{{ $item->id }}" {{ old('college', $user->principle->college->id) == $item->id ?
+                        <option value="{{ $item->id }}" {{ old('college', $user->principle->college->id ?? '' ) == $item->id ?
                             'selected' : '' }}>
                             {{ $item->name }}
                         </option>
@@ -667,14 +667,14 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="floatingInputExperience" type="text" placeholder="Experience"
-                        value="{{ $user->principle->experience }}" name="expierience" />
+                        value="{{ $user->principle->experience ?? '' }}" name="expierience" />
                     <label for="floatingInputExperience">Experience</label>
                 </div>
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <input class="form-control" id="date-o-f-joining" type="date" name="join_date"
-                        value="{{ $user->principle->joining_date ? \Carbon\Carbon::parse($user->principle->joining_date)->format('Y-m-d') : '' }}" />
+                        value="{{ ($user->principle->joining_date ?? '') ? \Carbon\Carbon::parse($user->principle->joining_date)->format('Y-m-d') : '' }}" />
                     <label class="form-label" for="date-o-f-joining">Date of Joining</label>
                 </div>
             </div>
@@ -700,7 +700,7 @@
 
                                 @foreach ($qualifications as $qualification)
                                 <option value="{{ $qualification }}" {{ in_array($qualification, old('qualification',
-                                    $user->principle->qualification ?? [])) ? 'selected' : '' }}>
+                                   ( $user->principle->qualification ?? '') ?? [])) ? 'selected' : '' }}>
                                     {{ $qualification }}
                                 </option>
                                 @endforeach
@@ -746,7 +746,7 @@
 
                                 @foreach ($specializations as $specialization)
                                 <option value="{{ $specialization }}" {{ in_array($specialization, old('specialization',
-                                    $user->principle->specialization ?? [])) ? 'selected' : '' }}>
+                                    ($user->principle->specialization ?? '')?? [])) ? 'selected' : '' }}>
                                     {{ $specialization }}
                                 </option>
                                 @endforeach
@@ -762,7 +762,7 @@
                 <div class="form-floating">
                     <textarea class="form-control" id="floatingStudentAddress" placeholder="Leave a comment here"
                         style="height: 128px" name="address">
-                        {{ $user->address }}
+                        {{ $user->address ?? '' }}
                     </textarea>
                     <label for="floatingStudentAddress">Address</label>
                 </div>
