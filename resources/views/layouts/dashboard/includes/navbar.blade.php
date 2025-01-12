@@ -781,7 +781,7 @@
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button"
                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-l ">
-                        <img class="rounded-circle " src="{{ Storage::url(Auth::user()->image) }}" alt="{{ Auth::user()->name }}" />
+                        <img class="rounded-circle " src="{{filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}" alt="{{ Auth::user()->name }}" />
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-profile shadow border"
@@ -791,7 +791,7 @@
                             <div class="text-center pt-4 pb-3">
                                 <div class="avatar avatar-xl ">
                                     <img class="rounded-circle "
-                                        src="{{ Storage::url(Auth::user()->image) }}" alt="" />
+                                        src="{{ filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}" alt="" />
                                 </div>
                                 <h6 class="mt-2 text-body-emphasis">{{ Auth::user()->name }}</h6>
                             </div>
