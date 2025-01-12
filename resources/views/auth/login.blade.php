@@ -15,7 +15,21 @@
                     <h3 class="text-body-highlight">Sign In</h3>
                     <p class="text-body-tertiary">Get access to your account</p>
                 </div>
-
+                <form action="" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-phoenix-secondary w-100 mb-3">
+                        <span class="fab fa-google text-light me-2 fs-9"></span>
+                        Sign in with Google
+                    </button>
+                </form>
+                <button class="btn btn-phoenix-secondary w-100">
+                    <span class="fab fa-github text-light me-2 fs-9"></span>
+                    Sign in with GitHub
+                </button>
+                <div class="position-relative">
+                    <hr class="bg-body-secondary mt-5 mb-4" />
+                    <div class="divider-content-center">or use email</div>
+                </div>
                 @if (session()->has('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('error')}}
@@ -28,7 +42,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-            
+
                 @if (session('status'))
                 <p class="alert alert-success alert-dismissible fade show">
                     {{ session('status') }}
