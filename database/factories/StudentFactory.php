@@ -17,9 +17,9 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-        'user_id' => rand(1, 1000),
-        'college_id' => rand(1, 50),
-        'department_id' => rand(1, 50),
+        'user_id' => \App\Models\User::factory(),
+        'college_id' => \App\Models\College::factory(),
+        'department_id' => \App\Models\Department::factory(),
         'usn' => $this->faker->unique()->regexify('[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{3}'),
         'semester' => $this->faker->numberBetween(1, 8),
         ];

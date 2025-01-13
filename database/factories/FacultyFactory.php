@@ -17,9 +17,9 @@ class FacultyFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => rand(1, 1000) ,
-            'college_id' => rand(1, 50),
-            'department_id' => rand(1, 50),
+            'user_id' => \App\Models\User::factory(),
+            'college_id' => \App\Models\College::factory(),
+            'department_id' => \App\Models\Department::factory(),
             'designation' => $this->faker->word(),
             'qualification' => $this->faker->words(3, true),
             'experience' => $this->faker->numberBetween(1, 40),

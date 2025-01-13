@@ -17,8 +17,8 @@ class PrincipalFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => rand(1, 1000),
-            'college_id' => rand(1, 50),
+            'user_id' => \App\Models\User::factory(),
+            'college_id' => \App\Models\College::factory(),
             'qualification' => ['PhD'],
             'experience' => fake()->numberBetween(5, 30),
             'specialization' => ['Computer Science', 'Data Science'],
