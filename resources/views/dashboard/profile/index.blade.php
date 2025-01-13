@@ -147,11 +147,11 @@
                                 </div>
                                 <div>
                                     <h6>QUALIFICATION</h6>
-                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ', $user->faculty->qualification)  ?? '' }}</p>
+                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ', $user->faculty->qualification  ?? [])  }}</p>
                                 </div>
                                 <div>
                                     <h6>SPECIALIZATION</h6>
-                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ', $user->faculty->specialization)  ?? '' }}</p>
+                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ', $user->faculty->specialization  ?? [])  }}</p>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +209,7 @@
                             <div class="row align-items-center g-5 mb-3 text-center text-sm-start">
                                 <div class="col-12 col-sm-auto mb-sm-2">
                                     <div class="avatar avatar-5xl">
-                                        <img class="rounded-circle" src="{{ Storage::url($user->image) }}" alt="{{ $user->name }}" />
+                                        <img class="rounded-circle" src="{{filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}" alt="{{ $user->name }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-auto flex-1">
@@ -234,11 +234,11 @@
                             <div class="d-flex flex-between-center border-top border-dashed pt-4">
                                 <div>
                                     <h6>QUALIFICATION</h6>
-                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ' , $user->hod->qualification)  ?? '' }}</p>
+                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ' , $user->hod->qualification  ?? [])   }}</p>
                                 </div>
                                 <div>
                                     <h6>SPECIALIZATION</h6>
-                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ', $user->hod->specialization) ?? '' }}</p>
+                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ', $user->hod->specialization  ?? [])  }}</p>
                                 </div>
 
                             </div>
@@ -297,7 +297,7 @@
                             <div class="row align-items-center g-5 mb-3 text-center text-sm-start">
                                 <div class="col-12 col-sm-auto mb-sm-2">
                                     <div class="avatar avatar-5xl">
-                                        <img class="rounded-circle" src="{{ Storage::url($user->image) }}" alt="{{ $user->name }}" />
+                                        <img class="rounded-circle" src="{{ filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}" alt="{{ $user->name }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-auto flex-1">
@@ -322,11 +322,11 @@
                             <div class="d-flex flex-between-center border-top border-dashed pt-4">
                                 <div>
                                     <h6>QUALIFICATION</h6>
-                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ' , $user->principle->qualification)  ?? '' }}</p>
+                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ' , $user->principle->qualification  ?? [])  }}</p>
                                 </div>
                                 <div>
                                     <h6>SPECIALIZATION</h6>
-                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ', $user->principle->specialization)  ?? '' }}</p>
+                                    <p class="fs-9 text-body-secondary mb-0">{{ implode(', ', $user->principle->specialization  ?? [])  }}</p>
                                 </div>
 
                             </div>
