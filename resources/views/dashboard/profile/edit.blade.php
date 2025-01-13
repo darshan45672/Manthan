@@ -206,12 +206,16 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <select class="form-select" id="floatingSelectInstitution" name="college">
+                        @if ($college->count() == 0)
+                        <option value="" disabled selected>No Colleges Found</option>
+                        @else
                         @foreach ($college as $item)
                         <option value="{{ $item->id }}" {{ old('college', $user->faculty->college->id  ?? '') == $item->id ?
                             'selected' : '' }}>
                             {{ $item->name }}
                         </option>
                         @endforeach
+                        @endif
                     </select><label for="floatingSelectInstitution">Institution</label>
                 </div>
             </div>
@@ -219,12 +223,16 @@
                 <div class="form-floating">
                     <select class="form-select @error('branch') is-invalid @enderror" id="floatingSelectBranch"
                         name="branch">
+                        @if ($college->count() == 0)
+                        <option value="" disabled selected>No Colleges Found</option>
+                        @else
                         @foreach ($departments as $item)
                         <option value="{{ $item->id }}" {{ old('branch', $user->faculty->department->id  ?? '') == $item->id ?
                             'selected' : '' }}>
                             {{ $item->name }}
                         </option>
                         @endforeach
+                        @endif
                     </select>
                     <label for="floatingSelectBranch">Branch</label>
                 </div>
@@ -232,13 +240,13 @@
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
                     <select class="form-select" id="floatingSelectDesignation" name="designation">
-                        <option value="Proffesor" {{ Auth::user()->faculty->designation == 'Proffesor' ? 'selected' : ''
+                        <option value="Proffesor" {{ (Auth::user()->faculty->designation ?? '')== 'Proffesor'  ? 'selected' : ''
                             }} >Proffesor</option>
-                        <option value="Associate Proffesor" {{ (Auth::user()->faculty->designation  ?? '') == 'Associate
+                        <option value="Associate Proffesor" {{ (Auth::user()->faculty->designation ?? '') == 'Associate
                             Proffesor' ? 'selected' : '' }} >Associate Proffesor</option>
-                        <option value="Assistant Proffesor" {{ (Auth::user()->faculty->designation  ?? '') == 'Assistant
+                        <option value="Assistant Proffesor" {{ (Auth::user()->faculty->designation ?? '') == 'Assistant
                             Proffesor' ? 'selected' : '' }} >Assistant Proffesor</option>
-                        <option value="Guest Proffesor" {{ (Auth::user()->faculty->designation  ?? '') == 'Guest Proffesor' ?
+                        <option value="Guest Proffesor" {{ (Auth::user()->faculty->designation ?? '') == 'Guest Proffesor' ?
                             'selected' : '' }} >Guest Proffesor</option>
                     </select>
                     <label for="floatingSelectDesignationt">Designation</label>
@@ -280,7 +288,7 @@
 
                                 @foreach ($qualifications as $qualification)
                                 <option value="{{ $qualification }}" {{ in_array($qualification, old('qualification',
-                                    ($user->faculty->qualification  ?? '') ?? [])) ? 'selected' : '' }}>
+                                    ($user->faculty->qualification  ?? []) ?? [])) ? 'selected' : '' }}>
                                     {{ $qualification }}
                                 </option>
                                 @endforeach
@@ -326,7 +334,7 @@
 
                                 @foreach ($specializations as $specialization)
                                 <option value="{{ $specialization }}" {{ in_array($specialization, old('specialization',
-                                   ( $user->faculty->specialization  ?? '') ?? [])) ? 'selected' : '' }}>
+                                   ( $user->faculty->specialization  ?? []) ?? [])) ? 'selected' : '' }}>
                                     {{ $specialization }}
                                 </option>
                                 @endforeach
@@ -490,7 +498,7 @@
 
                                 @foreach ($qualifications as $qualification)
                                 <option value="{{ $qualification }}" {{ in_array($qualification, old('qualification',
-                                    ($user->hod->qualification  ?? '')?? [])) ? 'selected' : '' }}>
+                                    ($user->hod->qualification  ?? [])?? [])) ? 'selected' : '' }}>
                                     {{ $qualification }}
                                 </option>
                                 @endforeach
@@ -536,7 +544,7 @@
 
                                 @foreach ($specializations as $specialization)
                                 <option value="{{ $specialization }}" {{ in_array($specialization, old('specialization',
-                                    ($user->hod->specialization  ?? '') ?? [])) ? 'selected' : '' }}>
+                                    ($user->hod->specialization  ?? []) ?? [])) ? 'selected' : '' }}>
                                     {{ $specialization }}
                                 </option>
                                 @endforeach
@@ -700,7 +708,7 @@
 
                                 @foreach ($qualifications as $qualification)
                                 <option value="{{ $qualification }}" {{ in_array($qualification, old('qualification',
-                                   ( $user->principle->qualification ?? '') ?? [])) ? 'selected' : '' }}>
+                                   ( $user->principle->qualification ?? []) ?? [])) ? 'selected' : '' }}>
                                     {{ $qualification }}
                                 </option>
                                 @endforeach
@@ -746,7 +754,7 @@
 
                                 @foreach ($specializations as $specialization)
                                 <option value="{{ $specialization }}" {{ in_array($specialization, old('specialization',
-                                    ($user->principle->specialization ?? '')?? [])) ? 'selected' : '' }}>
+                                    ($user->principle->specialization ?? [])?? [])) ? 'selected' : '' }}>
                                     {{ $specialization }}
                                 </option>
                                 @endforeach

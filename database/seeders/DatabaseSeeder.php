@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\College;
 use App\Models\Department;
+use App\Models\Faculty;
+use App\Models\HoD;
+use App\Models\Principal;
+use App\Models\Student;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -33,7 +37,12 @@ class DatabaseSeeder extends Seeder
         // ]);
         
         User::factory(2000)->create();
-        College::factory(5)->create();
-        Department::factory(5)->create();
+        College::factory(50)->create();
+        Department::factory(50)->create();
+
+        Student::factory(500)->create();
+        Faculty::factory(500)->create();
+        HoD::factory(50)->create();
+        Principal::factory(10)->create();
     }
 }
