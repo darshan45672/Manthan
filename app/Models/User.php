@@ -28,6 +28,7 @@ class User extends Authenticatable
         'is_admin',
         'provider',
         'provider_id',
+        'profile_completed',
     ];
 
 
@@ -52,6 +53,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
+            'profile_completed' => 'boolean',
         ];
     }
 

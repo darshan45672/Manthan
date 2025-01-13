@@ -36,6 +36,7 @@ class UserFactory extends Factory
             'image' => null,
             'created_at' => now(),
             'updated_at' => now(),
+            'profile_completed' => false,
         ];
     }
 
