@@ -206,7 +206,7 @@
         <div class="col-auto">
             <div class="row g-3">
                 <div class="col-auto"><a href="{{ route('user.edit.profile') }}"><button
-                            class="btn btn-phoenix-primary"><span class="fa-solid fa-edit-can me-2"></span>Edit
+                            class="btn btn-phoenix-primary"><span class="fa-solid fa-edit me-2"></span>Edit
                             profile</button></a></div>
                 <div class="col-auto"><button class="btn btn-phoenix-secondary"><span
                             class="fas fa-key me-2"></span>Reset password</button></div>
@@ -301,7 +301,7 @@
         <div class="col-auto">
             <div class="row g-3">
                 <div class="col-auto"><a href="{{ route('user.edit.profile') }}"><button
-                            class="btn btn-phoenix-primary"><span class="fa-solid fa-edit-can me-2"></span>Edit
+                            class="btn btn-phoenix-primary"><span class="fa-solid fa-edit me-2"></span>Edit
                             profile</button></a></div>
                 <div class="col-auto"><button class="btn btn-phoenix-secondary"><span
                             class="fas fa-key me-2"></span>Reset password</button></div>
