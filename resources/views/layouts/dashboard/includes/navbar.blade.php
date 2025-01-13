@@ -6,16 +6,18 @@
                 <li class="nav-item">
                     <!-- parent pages-->
                     <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1" href="#nv-Profile" role="button"
-                            data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-Profile">
+                        <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.view.profile') || request()->routeIs('user.edit.profile')) ? 'active' : '' }}" href="#nv-Profile" role="button" 
+                        data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-Profile">
                             <div class="d-flex align-items-center">
                                 <div class="dropdown-indicator-icon-wrapper">
                                     <span class="fas fa-caret-right dropdown-indicator-icon"></span>
-                                </div><span class="nav-link-icon"><span data-feather="pie-chart"></span></span><span
-                                    class="nav-link-text">Profile</span>
+                                </div>
+                                <span class="nav-link-icon">
+                                    <span data-feather="user"></span>
+                                </span>
+                                <span class="nav-link-text">Profile</span>
                                 @if (request()->routeIs('user.view.profile') || request()->routeIs('user.edit.profile'))
-                                <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
-                                    style="font-size: 6px"></span>
+                                <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
                                 @endif
                             </div>
                         </a>
@@ -23,18 +25,26 @@
                             <ul class="nav collapse parent {{ request()->routeIs('user.edit.profile') || request()->routeIs('user.view.profile') ? 'show' : '' }}"
                                 data-bs-parent="#navbarVerticalCollapse" id="nv-Profile">
                                 <li class="collapsed-nav-item-title d-none">Profile</li>
-                                <li class="nav-item"><a
-                                        class="nav-link {{ request()->routeIs('user.view.profile') ? 'active' : '' }}"
-                                        href="{{ route('user.view.profile') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text">View
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('user.view.profile') ? 'active' : '' }}" href="{{ route('user.view.profile') }}">
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">View
                                                 Profile
-                                            </span></div>
+                                            </span>
+                                            @if (request()->routeIs('user.view.profile'))
+                                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                            @endif
+                                        </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('user.edit.profile') ? 'active' : '' }} " href="{{ route('user.edit.profile') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text">Edit
-                                                Profile</span></div>
+                                        <div class="d-flex align-items-center">
+                                            <span class="nav-link-text">Edit Profile</span>
+                                            @if (request()->routeIs('user.edit.profile'))
+                                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                            @endif
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
@@ -43,14 +53,14 @@
                 </li>
 
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1" href="#nv-Events" role="button"
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.view.events') || request()->routeIs('user.my.events')) ? 'active' : '' }}" href="#nv-Events" role="button"
                         data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-Events">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
                             </div>
                             <span class="nav-link-icon">
-                                <span data-feather="phone"></span>
+                                <i class="fa-solid fa-calendar"></i>
                             </span>
                             <span class="nav-link-text">Events</span>
                             @if (request()->routeIs('user.view.events') || request()->routeIs('user.my.events'))
@@ -65,6 +75,9 @@
                                 <a class="nav-link {{ request()->routeIs('user.view.events') ? 'active' : '' }}" href="{{ route('user.view.events') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Eligible Events</span>
+                                        @if (request()->routeIs('user.view.events') )
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -72,6 +85,9 @@
                                 <a class="nav-link {{ request()->routeIs('user.my.events') ? 'active' : '' }}" href="{{ route('user.my.events') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">My Events</span>
+                                        @if (request()->routeIs('user.my.events'))
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -80,13 +96,13 @@
                 </div>
 
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1" href="#nv-Activity" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-Activity">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.activity.index') || request()->routeIs('user.activity.create')) ? 'active' : '' }}" href="#nv-Activity" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-Activity">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
                             </div>
                             <span class="nav-link-icon">
-                                <span data-feather="phone"></span>
+                                <i class="fa-solid fa-square-person-confined"></i>
                             </span>
                             <span class="nav-link-text">Activity</span>
                             @if (request()->routeIs('user.activity.index') || request()->routeIs('user.activity.create'))
@@ -99,8 +115,11 @@
                             <li class="collapsed-nav-item-title d-none">Activity</li>
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeIs('user.activity.index') ? 'active' : '' }}" href="{{ route('user.activity.index') }}">
-                                    <div class="d-flex align-items-center"><span class="nav-link-text">
-                                        View Activity</span>
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-text">View Activity</span>
+                                        @if (request()->routeIs('user.activity.index'))
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -109,6 +128,9 @@
                                 <a class="nav-link {{ request()->routeIs('user.activity.create') ? 'active' : '' }}" href="{{ route('user.activity.create') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Add Activity</span>
+                                        @if (request()->routeIs('user.activity.create'))
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -118,13 +140,13 @@
                 </div>
 
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1" href="#nv-Testimonial" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-Testimonial">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.testimonials') || request()->routeIs('user.testimonial.create')) ? 'active' : ''}}" href="#nv-Testimonial" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-Testimonial">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
                             </div>
                             <span class="nav-link-icon">
-                                <span data-feather="phone"></span>
+                                <i class="fa-regular fa-comments"></i>
                             </span>
                             <span class="nav-link-text">Testimonial</span>
                             @if (request()->routeIs('user.testimonials') || request()->routeIs('user.testimonial.create'))
@@ -136,14 +158,20 @@
                         <ul class="nav collapse parent {{ request()->routeIs('user.testimonials') || request()->routeIs('user.testimonial.create') ? 'show' : '' }}" data-bs-parent="#navbarVerticalCollapse" id="nv-Testimonial">
                             <li class="collapsed-nav-item-title d-none">Testimonial</li>
                             <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.testimonials') ? 'active' : '' }}" href="{{ route('user.testimonials') }}">
-                                    <div class="d-flex align-items-center"><span class="nav-link-text">My
-                                            Testimonial</span>
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-text">My Testimonial</span>
+                                        @if (request()->routeIs('user.testimonials'))
+                                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.testimonial.create') ? 'active' : '' }}" href="{{ route('user.testimonial.create') }}">
-                                    <div class="d-flex align-items-center"><span class="nav-link-text">Add
-                                            Testimonial</span>
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-text">Add Testimonial</span>
+                                        @if (request()->routeIs('user.testimonial.create'))
+                                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -153,12 +181,14 @@
 
                 @if (Auth::user()->role == 'faculty' || Auth::user()->role == 'HoD' || Auth::user()->role == 'Principle')
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1" href="#nv-students" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-students">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.students') || request()->routeIs('user.students.create')) ? 'active' : ''}}" href="#nv-students" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-students">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
                             </div>
-                            <span class="nav-link-icon"><span data-feather="phone"></span></span>
+                            <span class="nav-link-icon">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </span>
                             <span class="nav-link-text">Students</span>
                             @if (request()->routeIs('user.students') || request()->routeIs('user.students.create'))
                             <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
@@ -172,6 +202,9 @@
                                 <a class="nav-link {{ request()->routeIs('user.students') ? 'active' : '' }}" href="{{ route('user.students') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">View My Students</span>
+                                        @if (request()->routeIs('user.students'))
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -180,6 +213,9 @@
                                 <a class="nav-link {{ request()->routeIs('user.students.create') ? 'active' : '' }}" href="{{ route('user.students.create') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Add Student</span>
+                                        @if (request()->routeIs('user.students.create'))
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -196,7 +232,9 @@
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
                             </div>
-                            <span class="nav-link-icon"><span data-feather="phone"></span></span>
+                            <span class="nav-link-icon">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </span>
                             <span class="nav-link-text">Faculties</span>
                             @if (request()->routeIs('user.faculty') || request()->routeIs('user.faculty.create'))
                             <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
@@ -228,12 +266,14 @@
                 @endif
                 @if ( Auth::user()->role == 'Principle')
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1" href="#nv-hod" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-hod">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.hod') || request()->routeIs('user.hod.create')) ? 'active' : ''}}" href="#nv-hod" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-hod">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
                             </div>
-                            <span class="nav-link-icon"><span data-feather="phone"></span></span>
+                            <span class="nav-link-icon">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </span>
                             <span class="nav-link-text">HoD</span>
                             @if (request()->routeIs('user.hod') || request()->routeIs('user.hod.create'))
                             <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
@@ -247,6 +287,9 @@
                                 <a class="nav-link {{ request()->routeIs('user.hod') ? 'active' : '' }}" href="{{ route('user.hod') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">View HoDs</span>
+                                        @if (request()->routeIs('user.hod'))
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -255,6 +298,9 @@
                                 <a class="nav-link {{ request()->routeIs('user.hod.create') ? 'active' : '' }}" href="{{ route('user.hod.create') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Add HoD</span>
+                                        @if (request()->routeIs('user.hod.create'))
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        @endif
                                     </div>
                                 </a>
                             </li>
@@ -670,7 +716,7 @@
                         <circle cx="8" cy="2" r="2" fill="currentColor"></circle>
                         <circle cx="14" cy="2" r="2" fill="currentColor"></circle>
                     </svg></a>
-                {{-- <div
+                <div
                     class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-nine-dots shadow border"
                     aria-labelledby="navbarDropdownNindeDots">
                     <div class="card bg-body-emphasis position-relative border-0">
@@ -678,97 +724,97 @@
                             <div class="row text-center align-items-center gx-0 gy-0">
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/behance.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/behance.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Behance
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/google-cloud.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/google-cloud.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Cloud
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/slack.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/slack.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Slack
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/gitlab.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/gitlab.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Gitlab
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/bitbucket.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/bitbucket.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">
                                             BitBucket</p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/google-drive.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/google-drive.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Drive
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/trello.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/trello.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Trello
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/figma.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/figma.webp') }}" alt=""
                                             width="20" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Figma
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/twitter.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/') }}twitter.webp" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Twitter
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/pinterest.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/pinterest.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">
                                             Pinterest</p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/ln.webp" alt="" width="30" />
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/ln.webp') }}" alt="" width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">
                                             Linkedin</p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/google-maps.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/google-maps.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Maps
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/google-photos.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/google-photos.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Photos
                                         </p>
                                     </a></div>
                                 <div class="col-4"><a
                                         class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="dashboard/assets/img/nav-icons/spotify.webp" alt=""
+                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/spotify.webp') }}" alt=""
                                             width="30" />
                                         <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Spotify
                                         </p>
@@ -776,7 +822,7 @@
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </li>
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button"
                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">

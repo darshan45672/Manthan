@@ -30,12 +30,13 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'is_admin' => false,
-            'role' => 'student',
+            'role' => fake()->randomElement(['student', 'faculty', 'HoD', 'Principle']),
             'phone' => fake()->phoneNumber(),
             'address' => fake()->address(),
             'image' => null,
             'created_at' => now(),
             'updated_at' => now(),
+            'profile_completed' => false,
         ];
     }
 
