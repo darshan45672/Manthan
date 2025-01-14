@@ -67,6 +67,8 @@ class UserResource extends Resource
                         ->password()->placeholder('********')->dehydrated(fn($state) => filled($state)),
                     DateTimePicker::make('email_verified_at')->label('Email Verified At')->default(now()),
                     Checkbox::make('is_admin')->label('Is Admin')->default(false),
+
+                    
                 ])->columns(2),
             ]);
     }
