@@ -441,17 +441,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
 
 @elseif (Auth::user()->role == 'HoD')
 <div class="pb-5">
     <div class="row g-4">
-
         <div class="col-12 col-xxl-12 ">
             <div class="mb-8">
                 <h2 class="mb-2">HoD Dahboard</h2>
@@ -504,20 +501,19 @@
                     </div>
                 </div>
             </div>
+
             <hr class="bg-body-secondary mb-6 mt-4" />
         </div>
 
         <div class="col-12 col-xxl-12">
             <div class="row g-3">
-
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <h5 class="mb-2">Faculty Summary</h5>
-                                    <h6 class="text-body-tertiary">Department faculties summarized based on
-                                        designation</h6>
+                                    <h6 class="text-body-tertiary">Department faculties summarized based on designation</h6>
                                 </div>
                             </div>
                             <div class="pb-4 pt-3">
@@ -733,7 +729,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -743,7 +738,6 @@
 @elseif (Auth::user()->role == 'Principle')
 <div class="pb-5">
     <div class="row g-4">
-
         <div class="col-12 col-xxl-12 ">
             <div class="mb-8">
                 <h2 class="mb-2">Principal Dahboard</h2>
