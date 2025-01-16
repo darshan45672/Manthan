@@ -157,7 +157,7 @@
         <div class="col-12 col-xxl-12 ">
             <div class="mb-8">
                 <h2 class="mb-2">Faculty Dahboard</h2>
-                <h5 class="text-body-tertiary fw-semibold">Here’s what’s going on at your department</h5>
+                <h5 class="text-body-tertiary fw-semibold">Here's what's going on at your department</h5>
             </div>
             <div class="row align-items-center g-4">
                 <div class="col-12 col-md-auto">

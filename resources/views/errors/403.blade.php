@@ -19,16 +19,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
     <link href="{{ asset('dashboard/vendors/simplebar/simplebar.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('dashboard/asset/css/line.css') }}">
     <link href="{{ asset('dashboard/assets/css/theme-rtl.min.css') }}" type="text/css" rel="stylesheet" id="style-rtl">
     <link href="{{ asset('dashboard/assets/css/theme.min.css') }}" type="text/css" rel="stylesheet" id="style-default">
-    <link href="{{ asset('dashboard/assets/css/user-rtl.min.css') }}" type="text/css" rel="stylesheet"
-        id="user-style-rtl">
-    <link href="{{ asset('dashboard/assets/css/user.min.css') }}" type="text/css" rel="stylesheet"
-        id="user-style-default">
+    <link href="{{ asset('dashboard/assets/css/user-rtl.min.css') }}" type="text/css" rel="stylesheet" id="user-style-rtl">
+    <link href="{{ asset('dashboard/assets/css/user.min.css') }}" type="text/css" rel="stylesheet" id="user-style-default">
+    
     <script>
         var phoenixIsRTL = window.config.config.phoenixIsRTL;
         if (phoenixIsRTL) {
@@ -44,14 +42,16 @@
             userLinkRTL.setAttribute('disabled', true);
         }
     </script>
+
     <link href="{{ asset('dashboard/vendors/leaflet/leaflet.css') }}" rel="stylesheet">
     <link href="{{ asset('dashboard/vendors/leaflet.markercluster/MarkerCluster.css') }}" rel="stylesheet">
     <link href="{{ asset('dashboard/vendors/leaflet.markercluster/MarkerCluster.Default.css') }}" rel="stylesheet">
+
 </head>
 
 <body>
-    <main class="main" id="top">
 
+    <main class="main" id="top">
         <div class="px-3">
             <div class="row min-vh-100 flex-center p-5">
               <div class="col-12 col-xl-10 col-xxl-8">
@@ -66,7 +66,7 @@
             </div>
           </div>
     </main>
-
+    
     <script src="{{ asset('dashboard/vendors/popper/popper.min.js') }}"></script>
     <script src="{{ asset('dashboard/vendors/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('dashboard/vendors/anchorjs/anchor.min.js') }}"></script>
@@ -82,6 +82,7 @@
     <script src="{{ asset('dashboard/assets/js/phoenix.js') }}"></script>
     <script src="{{ asset('dashboard/vendors/echarts/echarts.min.js') }}"></script>
     <script src="{{ asset('dashboard/assets/js/ecommerce-dashboard.js') }}"></script>
+
 </body>
 
 </html>

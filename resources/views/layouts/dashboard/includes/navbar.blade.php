@@ -6,8 +6,8 @@
                 <li class="nav-item">
                     <!-- parent pages-->
                     <div class="nav-item-wrapper">
-                        <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.view.profile') || request()->routeIs('user.edit.profile')) ? 'active' : '' }}" href="#nv-Profile" role="button" 
-                        data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-Profile">
+                        <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.view.profile') || request()->routeIs('user.edit.profile')) ? 'active' : '' }}"
+                            href="#nv-Profile" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="nv-Profile">
                             <div class="d-flex align-items-center">
                                 <div class="dropdown-indicator-icon-wrapper">
                                     <span class="fas fa-caret-right dropdown-indicator-icon"></span>
@@ -26,11 +26,10 @@
                                 data-bs-parent="#navbarVerticalCollapse" id="nv-Profile">
                                 <li class="collapsed-nav-item-title d-none">Profile</li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('user.view.profile') ? 'active' : '' }}" href="{{ route('user.view.profile') }}">
+                                    <a class="nav-link {{ request()->routeIs('user.view.profile') ? 'active' : '' }}"
+                                        href="{{ route('user.view.profile') }}">
                                         <div class="d-flex align-items-center">
-                                            <span class="nav-link-text">View
-                                                Profile
-                                            </span>
+                                            <span class="nav-link-text">View Profile</span>
                                             @if (request()->routeIs('user.view.profile'))
                                             <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
                                             @endif
@@ -38,7 +37,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('user.edit.profile') ? 'active' : '' }} " href="{{ route('user.edit.profile') }}">
+                                    <a class="nav-link {{ request()->routeIs('user.edit.profile') ? 'active' : '' }} "
+                                        href="{{ route('user.edit.profile') }}">
                                         <div class="d-flex align-items-center">
                                             <span class="nav-link-text">Edit Profile</span>
                                             @if (request()->routeIs('user.edit.profile'))
@@ -53,8 +53,8 @@
                 </li>
 
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.view.events') || request()->routeIs('user.my.events')) ? 'active' : '' }}" href="#nv-Events" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-Events">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.view.events') || request()->routeIs('user.my.events')) ? 'active' : '' }}" href="#nv-Events" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="nv-Events">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
@@ -69,24 +69,29 @@
                         </div>
                     </a>
                     <div class="parent-wrapper label-1">
-                        <ul class="nav collapse parent {{ request()->routeIs('user.view.events') || request()->routeIs('user.my.events') ? 'show' : '' }}" data-bs-parent="#navbarVerticalCollapse" id="nv-Events">
+                        <ul class="nav collapse parent {{ request()->routeIs('user.view.events') || request()->routeIs('user.my.events') ? 'show' : '' }}"
+                            data-bs-parent="#navbarVerticalCollapse" id="nv-Events">
                             <li class="collapsed-nav-item-title d-none">Events</li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.view.events') ? 'active' : '' }}" href="{{ route('user.view.events') }}">
+                                <a class="nav-link {{ request()->routeIs('user.view.events') ? 'active' : '' }}"
+                                    href="{{ route('user.view.events') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Eligible Events</span>
                                         @if (request()->routeIs('user.view.events') )
-                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.my.events') ? 'active' : '' }}" href="{{ route('user.my.events') }}">
+                                <a class="nav-link {{ request()->routeIs('user.my.events') ? 'active' : '' }}"
+                                    href="{{ route('user.my.events') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">My Events</span>
                                         @if (request()->routeIs('user.my.events'))
-                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
@@ -96,7 +101,9 @@
                 </div>
 
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.activity.index') || request()->routeIs('user.activity.create')) ? 'active' : '' }}" href="#nv-Activity" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-Activity">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.activity.index') || request()->routeIs('user.activity.create')) ? 'active' : '' }}"
+                        href="#nv-Activity" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="nv-Activity">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
@@ -105,31 +112,38 @@
                                 <i class="fa-solid fa-square-person-confined"></i>
                             </span>
                             <span class="nav-link-text">Activity</span>
-                            @if (request()->routeIs('user.activity.index') || request()->routeIs('user.activity.create'))
-                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                            @if (request()->routeIs('user.activity.index') ||
+                            request()->routeIs('user.activity.create'))
+                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                style="font-size: 6px"></span>
                             @endif
                         </div>
                     </a>
                     <div class="parent-wrapper label-1">
-                        <ul class="nav collapse parent  {{ request()->routeIs('user.activity.index') || request()->routeIs('user.activity.create') ? 'show' : '' }}" data-bs-parent="#navbarVerticalCollapse" id="nv-Activity">
+                        <ul class="nav collapse parent  {{ request()->routeIs('user.activity.index') || request()->routeIs('user.activity.create') ? 'show' : '' }}"
+                            data-bs-parent="#navbarVerticalCollapse" id="nv-Activity">
                             <li class="collapsed-nav-item-title d-none">Activity</li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.activity.index') ? 'active' : '' }}" href="{{ route('user.activity.index') }}">
+                                <a class="nav-link {{ request()->routeIs('user.activity.index') ? 'active' : '' }}"
+                                    href="{{ route('user.activity.index') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">View Activity</span>
                                         @if (request()->routeIs('user.activity.index'))
-                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
                             </li>
                             @if (Auth::user()->role == 'student')
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.activity.create') ? 'active' : '' }}" href="{{ route('user.activity.create') }}">
+                                <a class="nav-link {{ request()->routeIs('user.activity.create') ? 'active' : '' }}"
+                                    href="{{ route('user.activity.create') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Add Activity</span>
                                         @if (request()->routeIs('user.activity.create'))
-                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
@@ -140,7 +154,9 @@
                 </div>
 
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.testimonials') || request()->routeIs('user.testimonial.create')) ? 'active' : ''}}" href="#nv-Testimonial" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-Testimonial">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.testimonials') || request()->routeIs('user.testimonial.create')) ? 'active' : ''}}"
+                        href="#nv-Testimonial" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="nv-Testimonial">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
@@ -149,28 +165,37 @@
                                 <i class="fa-regular fa-comments"></i>
                             </span>
                             <span class="nav-link-text">Testimonial</span>
-                            @if (request()->routeIs('user.testimonials') || request()->routeIs('user.testimonial.create'))
-                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                            @if (request()->routeIs('user.testimonials') ||
+                            request()->routeIs('user.testimonial.create'))
+                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                style="font-size: 6px"></span>
                             @endif
                         </div>
                     </a>
                     <div class="parent-wrapper label-1">
-                        <ul class="nav collapse parent {{ request()->routeIs('user.testimonials') || request()->routeIs('user.testimonial.create') ? 'show' : '' }}" data-bs-parent="#navbarVerticalCollapse" id="nv-Testimonial">
+                        <ul class="nav collapse parent {{ request()->routeIs('user.testimonials') || request()->routeIs('user.testimonial.create') ? 'show' : '' }}"
+                            data-bs-parent="#navbarVerticalCollapse" id="nv-Testimonial">
                             <li class="collapsed-nav-item-title d-none">Testimonial</li>
-                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.testimonials') ? 'active' : '' }}" href="{{ route('user.testimonials') }}">
+                            <li class="nav-item"><a
+                                    class="nav-link {{ request()->routeIs('user.testimonials') ? 'active' : '' }}"
+                                    href="{{ route('user.testimonials') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">My Testimonial</span>
                                         @if (request()->routeIs('user.testimonials'))
-                                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
                             </li>
-                            <li class="nav-item"><a class="nav-link {{ request()->routeIs('user.testimonial.create') ? 'active' : '' }}" href="{{ route('user.testimonial.create') }}">
+                            <li class="nav-item"><a
+                                    class="nav-link {{ request()->routeIs('user.testimonial.create') ? 'active' : '' }}"
+                                    href="{{ route('user.testimonial.create') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Add Testimonial</span>
                                         @if (request()->routeIs('user.testimonial.create'))
-                                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
@@ -179,9 +204,12 @@
                     </div>
                 </div>
 
-                @if (Auth::user()->role == 'faculty' || Auth::user()->role == 'HoD' || Auth::user()->role == 'Principle')
+                @if (Auth::user()->role == 'faculty' || Auth::user()->role == 'HoD' || Auth::user()->role ==
+                'Principle')
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.students') || request()->routeIs('user.students.create')) ? 'active' : ''}}" href="#nv-students" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-students">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.students') || request()->routeIs('user.students.create')) ? 'active' : ''}}"
+                        href="#nv-students" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="nv-students">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
@@ -191,30 +219,37 @@
                             </span>
                             <span class="nav-link-text">Students</span>
                             @if (request()->routeIs('user.students') || request()->routeIs('user.students.create'))
-                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                style="font-size: 6px"></span>
                             @endif
                         </div>
                     </a>
                     <div class="parent-wrapper label-1">
-                        <ul class="nav collapse parent {{ request()->routeIs('user.students') || request()->routeIs('user.students.create') ? 'show' : '' }}" data-bs-parent="#navbarVerticalCollapse" id="nv-students">
+                        <ul class="nav collapse parent {{ request()->routeIs('user.students') || request()->routeIs('user.students.create') ? 'show' : '' }}"
+                            data-bs-parent="#navbarVerticalCollapse" id="nv-students">
                             <li class="collapsed-nav-item-title d-none">Students</li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.students') ? 'active' : '' }}" href="{{ route('user.students') }}">
+                                <a class="nav-link {{ request()->routeIs('user.students') ? 'active' : '' }}"
+                                    href="{{ route('user.students') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">View My Students</span>
                                         @if (request()->routeIs('user.students'))
-                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
                             </li>
-                            @if (Auth::user()->role == 'faculty' || Auth::user()->role == 'HoD' || Auth::user()->role == 'Principle')   
+                            @if (Auth::user()->role == 'faculty' || Auth::user()->role == 'HoD' || Auth::user()->role ==
+                            'Principle')
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.students.create') ? 'active' : '' }}" href="{{ route('user.students.create') }}">
+                                <a class="nav-link {{ request()->routeIs('user.students.create') ? 'active' : '' }}"
+                                    href="{{ route('user.students.create') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Add Student</span>
                                         @if (request()->routeIs('user.students.create'))
-                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
@@ -227,7 +262,8 @@
 
                 @if ( Auth::user()->role == 'HoD' || Auth::user()->role == 'Principle')
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1" href="#nv-faculty" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-faculty">
+                    <a class="nav-link dropdown-indicator label-1" href="#nv-faculty" role="button"
+                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-faculty">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
@@ -237,23 +273,28 @@
                             </span>
                             <span class="nav-link-text">Faculties</span>
                             @if (request()->routeIs('user.faculty') || request()->routeIs('user.faculty.create'))
-                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                style="font-size: 6px"></span>
                             @endif
                         </div>
                     </a>
                     <div class="parent-wrapper label-1">
-                        <ul class="nav collapse parent {{ request()->routeIs('user.faculty') || request()->routeIs('user.faculty.create') ? 'show' : '' }}" data-bs-parent="#navbarVerticalCollapse" id="nv-faculty">
+                        <ul class="nav collapse parent {{ request()->routeIs('user.faculty') || request()->routeIs('user.faculty.create') ? 'show' : '' }}"
+                            data-bs-parent="#navbarVerticalCollapse" id="nv-faculty">
                             <li class="collapsed-nav-item-title d-none">Faculties</li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.faculty') ? 'active' : '' }}" href="{{ route('user.faculty') }}">
+                                <a class="nav-link {{ request()->routeIs('user.faculty') ? 'active' : '' }}"
+                                    href="{{ route('user.faculty') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">View My Faculties</span>
                                     </div>
                                 </a>
                             </li>
-                            @if (Auth::user()->role == 'faculty' || Auth::user()->role == 'HoD' || Auth::user()->role == 'Principle')   
+                            @if (Auth::user()->role == 'faculty' || Auth::user()->role == 'HoD' || Auth::user()->role ==
+                            'Principle')
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.faculty.create') ? 'active' : '' }}" href="{{ route('user.faculty.create') }}">
+                                <a class="nav-link {{ request()->routeIs('user.faculty.create') ? 'active' : '' }}"
+                                    href="{{ route('user.faculty.create') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Add Faculty</span>
                                     </div>
@@ -266,7 +307,9 @@
                 @endif
                 @if ( Auth::user()->role == 'Principle')
                 <div class="nav-item-wrapper">
-                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.hod') || request()->routeIs('user.hod.create')) ? 'active' : ''}}" href="#nv-hod" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-hod">
+                    <a class="nav-link dropdown-indicator label-1 {{ (request()->routeIs('user.hod') || request()->routeIs('user.hod.create')) ? 'active' : ''}}"
+                        href="#nv-hod" role="button" data-bs-toggle="collapse" aria-expanded="false"
+                        aria-controls="nv-hod">
                         <div class="d-flex align-items-center">
                             <div class="dropdown-indicator-icon-wrapper">
                                 <span class="fas fa-caret-right dropdown-indicator-icon"></span>
@@ -276,7 +319,8 @@
                             </span>
                             <span class="nav-link-text">HoD</span>
                             @if (request()->routeIs('user.hod') || request()->routeIs('user.hod.create'))
-                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                            <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                style="font-size: 6px"></span>
                             @endif
                         </div>
                     </a>
@@ -284,22 +328,26 @@
                         <ul class="nav collapse parent {{ request()->routeIs('user.hod') || request()->routeIs('user.hod.create') ? 'show' : '' }}" data-bs-parent="#navbarVerticalCollapse" id="nv-hod">
                             <li class="collapsed-nav-item-title d-none">HoD</li>
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.hod') ? 'active' : '' }}" href="{{ route('user.hod') }}">
+                                <a class="nav-link {{ request()->routeIs('user.hod') ? 'active' : '' }}"
+                                    href="{{ route('user.hod') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">View HoDs</span>
                                         @if (request()->routeIs('user.hod'))
-                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
                             </li>
-                            @if ( Auth::user()->role == 'Principle')   
+                            @if ( Auth::user()->role == 'Principle')
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('user.hod.create') ? 'active' : '' }}" href="{{ route('user.hod.create') }}">
+                                <a class="nav-link {{ request()->routeIs('user.hod.create') ? 'active' : '' }}"
+                                    href="{{ route('user.hod.create') }}">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-text">Add HoD</span>
                                         @if (request()->routeIs('user.hod.create'))
-                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator" style="font-size: 6px"></span>
+                                        <span class="fa-solid fa-circle text-info ms-1 new-page-indicator"
+                                            style="font-size: 6px"></span>
                                         @endif
                                     </div>
                                 </a>
@@ -318,6 +366,7 @@
                 class="uil uil-left-arrow-to-left fs-8"></span><span class="uil uil-arrow-from-right fs-8"></span><span
                 class="navbar-vertical-footer-text ms-2">Collapsed View</span></button></div>
 </nav>
+
 <nav class="navbar navbar-top fixed-top navbar-expand" id="navbarDefault" style="display:none;">
     <div class="collapse navbar-collapse justify-content-between">
         <div class="navbar-logo">
@@ -336,14 +385,14 @@
         </div>
         <div class="search-box navbar-top-search-box d-none d-lg-block" data-list='{"valueNames":["title"]}'
             style="width:25rem;">
-            <form class="position-relative" data-bs-toggle="search" data-bs-display="static"><input
+            {{-- <form class="position-relative" data-bs-toggle="search" data-bs-display="static"><input
                     class="form-control search-input fuzzy-search rounded-pill form-control-sm" type="search"
                     placeholder="Search..." aria-label="Search" />
                 <span class="fas fa-search search-box-icon"></span>
             </form>
             <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none"
                 data-bs-dismiss="search"><button class="btn btn-link p-0" aria-label="Close"></button></div>
-            <div class="dropdown-menu border start-0 py-0 overflow-hidden w-100">
+            <div class="dropdown-menu border start-0 py-0 overflow-hidden w-100"> --}}
                 <div class="scrollbar-overlay" style="max-height: 30rem;">
                     {{-- <div class="list pb-3">
                         <h6 class="dropdown-header text-body-highlight fs-10 py-2">24 <span
@@ -493,15 +542,20 @@
         </div>
         <ul class="navbar-nav navbar-nav-icons flex-row">
             <li class="nav-item">
-                <div class="theme-control-toggle fa-icon-wait px-2"><input
-                        class="form-check-input ms-0 theme-control-toggle-input" type="checkbox"
-                        data-theme-control="phoenixTheme" value="dark" id="themeControlToggle" /><label
-                        class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle"
+                <div class="theme-control-toggle fa-icon-wait px-2">
+                    <input class="form-check-input ms-0 theme-control-toggle-input" type="checkbox"
+                        data-theme-control="phoenixTheme" value="dark" id="themeControlToggle" />
+                    <label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle"
                         data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Switch theme"
-                        style="height:32px;width:32px;"><span class="icon" data-feather="moon"></span></label><label
-                        class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle"
+                        style="height:32px;width:32px;">
+                        <span class="icon" data-feather="moon"></span>
+                    </label>
+                    <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle"
                         data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Switch theme"
-                        style="height:32px;width:32px;"><span class="icon" data-feather="sun"></span></label></div>
+                        style="height:32px;width:32px;">
+                        <span class="icon" data-feather="sun"></span>
+                    </label>
+                </div>
             </li>
             {{-- <li class="nav-item dropdown">
                 <a class="nav-link" href="#" style="min-width: 2.25rem" role="button" data-bs-toggle="dropdown"
@@ -716,109 +770,92 @@
                         <circle cx="8" cy="2" r="2" fill="currentColor"></circle>
                         <circle cx="14" cy="2" r="2" fill="currentColor"></circle>
                     </svg></a>
-                <div
-                    class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-nine-dots shadow border"
-                    aria-labelledby="navbarDropdownNindeDots">
+                <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-nine-dots shadow border" aria-labelledby="navbarDropdownNindeDots">
                     <div class="card bg-body-emphasis position-relative border-0">
                         <div class="card-body pt-3 px-3 pb-0 overflow-auto scrollbar" style="height: 20rem;">
                             <div class="row text-center align-items-center gx-0 gy-0">
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/behance.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Behance
-                                        </p>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/behance.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Behance</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/google-cloud.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Cloud</p>
                                     </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/google-cloud.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Cloud
-                                        </p>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/slack.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Slack</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/gitlab.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Gitlab</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/bitbucket.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1"> BitBucket</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/google-drive.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Drive</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/trello.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Trello</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/figma.webp') }}" alt="" width="20" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Figma</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/') }}twitter.webp" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Twitter</p>
                                     </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/slack.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Slack
-                                        </p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/gitlab.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Gitlab
-                                        </p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/bitbucket.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">
-                                            BitBucket</p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/google-drive.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Drive
-                                        </p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/trello.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Trello
-                                        </p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/figma.webp') }}" alt=""
-                                            width="20" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Figma
-                                        </p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/') }}twitter.webp" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Twitter
-                                        </p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/pinterest.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">
-                                            Pinterest</p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/ln.webp') }}" alt="" width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">
-                                            Linkedin</p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/google-maps.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Maps
-                                        </p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/google-photos.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Photos
-                                        </p>
-                                    </a></div>
-                                <div class="col-4"><a
-                                        class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3"
-                                        href="#!"><img src="{{ asset('dashboard/assets/img/nav-icons/spotify.webp') }}" alt=""
-                                            width="30" />
-                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Spotify
-                                        </p>
-                                    </a></div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/pinterest.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1"> Pinterest </p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/ln.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1"> Linkedin</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/google-maps.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Maps</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/google-photos.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Photos</p>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a class="d-block bg-body-secondary-hover p-2 rounded-3 text-center text-decoration-none mb-3" href="#!">
+                                        <img src="{{ asset('dashboard/assets/img/nav-icons/spotify.webp') }}" alt="" width="30" />
+                                        <p class="mb-0 text-body-emphasis text-truncate fs-10 mt-1 pt-1">Spotify</p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -827,7 +864,9 @@
             <li class="nav-item dropdown"><a class="nav-link lh-1 pe-0" id="navbarDropdownUser" href="#!" role="button"
                     data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-l ">
-                        <img class="rounded-circle " src="{{filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}" alt="{{ Auth::user()->name }}" />
+                        <img class="rounded-circle "
+                            src="{{filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}"
+                            alt="{{ Auth::user()->name }}" />
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-profile shadow border"
@@ -837,7 +876,8 @@
                             <div class="text-center pt-4 pb-3">
                                 <div class="avatar avatar-xl ">
                                     <img class="rounded-circle "
-                                        src="{{ filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}" alt="" />
+                                        src="{{ filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}"
+                                        alt="" />
                                 </div>
                                 <h6 class="mt-2 text-body-emphasis">{{ Auth::user()->name }}</h6>
                             </div>
@@ -894,6 +934,7 @@
         </ul>
     </div>
 </nav>
+
 <script>
     var navbarTopShape = window.config.config.phoenixNavbarTopShape;
     var navbarPosition = window.config.config.phoenixNavbarPosition;
