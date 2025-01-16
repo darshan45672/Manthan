@@ -42,14 +42,12 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-auto">
-                    <div class="d-flex align-items-center"><span class="fa-stack"
-                            style="min-height: 46px;min-width: 46px;"><span
-                                class="fa-solid fa-square fa-stack-2x dark__text-opacity-50 text-warning-light"
-                                data-fa-transform="down-4 rotate--10 left-4"></span><span
-                                class="fa-solid fa-circle fa-stack-2x stack-circle text-stats-circle-warning"
-                                data-fa-transform="up-4 right-3 grow-2"></span><span
-                                class="fa-stack-1x fa-solid fa-star text-warning "
-                                data-fa-transform="shrink-2 up-8 right-6"></span></span>
+                    <div class="d-flex align-items-center">
+                        <span class="fa-stack" style="min-height: 46px;min-width: 46px;">
+                            <span class="fa-solid fa-square fa-stack-2x dark__text-opacity-50 text-warning-light" data-fa-transform="down-4 rotate--10 left-4"></span>
+                            <span class="fa-solid fa-circle fa-stack-2x stack-circle text-stats-circle-warning" data-fa-transform="up-4 right-3 grow-2"></span>
+                            <span class="fa-stack-1x fa-solid fa-star text-warning " data-fa-transform="shrink-2 up-8 right-6"></span>
+                        </span>
                         <div class="ms-3">
                             <h4 class="mb-0">2 In-progress</h4>
                             <p class="text-body-secondary fs-9 mb-0">Reports under evaluation</p>
@@ -147,7 +145,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -211,7 +208,6 @@
 
         <div class="col-12 col-xxl-12">
             <div class="row g-3">
-
                 <!-- <div class="col-12 col-md-6">
             <div class="card h-100">
               <div class="card-body">
@@ -261,7 +257,6 @@
               </div>
             </div>
           </div> -->
-
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
                         <div class="card-body">
