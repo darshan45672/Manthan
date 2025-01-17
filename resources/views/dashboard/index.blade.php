@@ -21,7 +21,7 @@
                                 class="fa-stack-1x fa-solid fa-star text-success "
                                 data-fa-transform="shrink-2 up-8 right-6"></span></span>
                         <div class="ms-3">
-                            <h4 class="mb-0">5 Participation</h4>
+                            <h4 class="mb-0">{{ $participation }} Participation</h4>
                             <p class="text-body-secondary fs-9 mb-0">Participated events</p>
                         </div>
                     </div>
@@ -36,20 +36,18 @@
                                 class="fa-stack-1x fa-solid fa-star text-success "
                                 data-fa-transform="shrink-2 up-8 right-6"></span></span>
                         <div class="ms-3">
-                            <h4 class="mb-0">2 Acceptance</h4>
+                            <h4 class="mb-0">{{ $acceptance->count() }} Acceptance</h4>
                             <p class="text-body-secondary fs-9 mb-0">Reports accepted</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-auto">
-                    <div class="d-flex align-items-center"><span class="fa-stack"
-                            style="min-height: 46px;min-width: 46px;"><span
-                                class="fa-solid fa-square fa-stack-2x dark__text-opacity-50 text-warning-light"
-                                data-fa-transform="down-4 rotate--10 left-4"></span><span
-                                class="fa-solid fa-circle fa-stack-2x stack-circle text-stats-circle-warning"
-                                data-fa-transform="up-4 right-3 grow-2"></span><span
-                                class="fa-stack-1x fa-solid fa-star text-warning "
-                                data-fa-transform="shrink-2 up-8 right-6"></span></span>
+                    <div class="d-flex align-items-center">
+                        <span class="fa-stack" style="min-height: 46px;min-width: 46px;">
+                            <span class="fa-solid fa-square fa-stack-2x dark__text-opacity-50 text-warning-light" data-fa-transform="down-4 rotate--10 left-4"></span>
+                            <span class="fa-solid fa-circle fa-stack-2x stack-circle text-stats-circle-warning" data-fa-transform="up-4 right-3 grow-2"></span>
+                            <span class="fa-stack-1x fa-solid fa-star text-warning " data-fa-transform="shrink-2 up-8 right-6"></span>
+                        </span>
                         <div class="ms-3">
                             <h4 class="mb-0">2 In-progress</h4>
                             <p class="text-body-secondary fs-9 mb-0">Reports under evaluation</p>
@@ -147,7 +145,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -211,7 +208,6 @@
 
         <div class="col-12 col-xxl-12">
             <div class="row g-3">
-
                 <!-- <div class="col-12 col-md-6">
             <div class="card h-100">
               <div class="card-body">
@@ -261,7 +257,6 @@
               </div>
             </div>
           </div> -->
-
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
                         <div class="card-body">
@@ -446,17 +441,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
 
 @elseif (Auth::user()->role == 'HoD')
 <div class="pb-5">
     <div class="row g-4">
-
         <div class="col-12 col-xxl-12 ">
             <div class="mb-8">
                 <h2 class="mb-2">HoD Dahboard</h2>
@@ -509,20 +501,19 @@
                     </div>
                 </div>
             </div>
+
             <hr class="bg-body-secondary mb-6 mt-4" />
         </div>
 
         <div class="col-12 col-xxl-12">
             <div class="row g-3">
-
                 <div class="col-12 col-md-6">
                     <div class="card h-100">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div>
                                     <h5 class="mb-2">Faculty Summary</h5>
-                                    <h6 class="text-body-tertiary">Department faculties summarized based on
-                                        designation</h6>
+                                    <h6 class="text-body-tertiary">Department faculties summarized based on designation</h6>
                                 </div>
                             </div>
                             <div class="pb-4 pt-3">
@@ -738,7 +729,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -748,10 +738,9 @@
 @elseif (Auth::user()->role == 'Principle')
 <div class="pb-5">
     <div class="row g-4">
-
         <div class="col-12 col-xxl-12 ">
             <div class="mb-8">
-                <h2 class="mb-2">Principal Dahboard</h2>
+                <h2 class="mb-2">Principal Dashboard</h2>
                 <h5 class="text-body-tertiary fw-semibold">Here's what's going on in your college</h5>
             </div>
             <div class="row align-items-center g-4">
@@ -811,7 +800,7 @@
                                 data-fa-transform="shrink-2 up-8 right-6"></span></span>
                         <div class="ms-3">
                             <h4 class="mb-0">3550 Submissions</h4>
-                            <p class="text-body-secondary fs-9 mb-0">3550/5000 AICTE report Submissionsp>
+                            <p class="text-body-secondary fs-9 mb-0">3550/5000 AICTE report Submissions </p>
                         </div>
                     </div>
                 </div>

@@ -95,7 +95,7 @@ class ActivityResource extends Resource
                         FileUpload::make('file')->directory('activities/report')->preserveFilenames()->openable()->downloadable()->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])->required(),
                         FileUpload::make('certificate')
                             ->directory('activities/certificate')->preserveFilenames()
-                            ->openable()->downloadable()->multiple()->nullable()
+                            ->openable()->downloadable()->nullable()
                             ->acceptedFileTypes(['application/pdf', 'image/webp', 'image/png', 'image/jpeg', 'image/heic'])
                             ->label('Upload Certificates'),
                     ])->columns(2),

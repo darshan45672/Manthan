@@ -29,8 +29,8 @@ class ActivityCRUDTest extends TestCase
             'start_date' => now(),
             'end_date' => now()->addDays(2),
             'hours' => 10,
-            'file' => ['file1.pdf', 'file2.pdf'],
-            'certificate' => ['certificate1.pdf'],
+            'file' => 'file1.pdf',
+            'certificate' => 'certificate1.pdf',
             'status' => 'completed',
         ];
 
@@ -43,8 +43,8 @@ class ActivityCRUDTest extends TestCase
             'description' => 'Sample activity description',
             'program_expected_outcomes_id' => $programExpectedOutcome->id,
             'hours' => 10,
-            'file' => json_encode(['file1.pdf', 'file2.pdf']),
-            'certificate' => json_encode(['certificate1.pdf']),
+            'file' => 'file1.pdf',
+            'certificate' => 'certificate1.pdf',
             'status' => 'completed',
         ]);
     }
@@ -65,8 +65,8 @@ class ActivityCRUDTest extends TestCase
             'start_date' => now(),
             'end_date' => now()->addDays(2),
             'hours' => 10,
-            'file' => ['file1.pdf', 'file2.pdf'],
-            'certificate' => ['certificate1.pdf'],
+            'file' => 'file1.pdf',
+            'certificate' => 'certificate1.pdf',
             'status' => 'completed',
         ]);
 
@@ -95,8 +95,8 @@ class ActivityCRUDTest extends TestCase
             'start_date' => now(),
             'end_date' => now()->addDays(2),
             'hours' => 10,
-            'file' => ['file1.pdf', 'file2.pdf'],
-            'certificate' => ['certificate1.pdf'],
+            'file' => 'file1.pdf',
+            'certificate' => 'certificate1.pdf',
             'status' => 'completed',
         ]);
 
@@ -128,8 +128,8 @@ class ActivityCRUDTest extends TestCase
             'start_date' => now(),
             'end_date' => now()->addDays(2),
             'hours' => 10,
-            'file' => ['file1.pdf', 'file2.pdf'],
-            'certificate' => ['certificate1.pdf'],
+            'file' => 'file1.pdf',
+            'certificate' => 'certificate1.pdf',
             'status' => 'completed',
         ]);
 
