@@ -25,7 +25,7 @@ class DashboardController extends Controller
         // });
 
         $participation = RegisteredEvents::where('user_id', Auth::id())->count();
-        $acceptance = Activity::get();
+        $acceptance = Activity::all();
         
         // dd($acceptance);
         return view("dashboard.index", compact('participation', 'acceptance'));
