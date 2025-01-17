@@ -21,7 +21,7 @@
                                 class="fa-stack-1x fa-solid fa-star text-success "
                                 data-fa-transform="shrink-2 up-8 right-6"></span></span>
                         <div class="ms-3">
-                            <h4 class="mb-0">5 Participation</h4>
+                            <h4 class="mb-0">{{ $participation }} Participation</h4>
                             <p class="text-body-secondary fs-9 mb-0">Participated events</p>
                         </div>
                     </div>
@@ -740,7 +740,7 @@
     <div class="row g-4">
         <div class="col-12 col-xxl-12 ">
             <div class="mb-8">
-                <h2 class="mb-2">Principal Dahboard</h2>
+                <h2 class="mb-2">Principal Dashboard</h2>
                 <h5 class="text-body-tertiary fw-semibold">Here's what's going on in your college</h5>
             </div>
             <div class="row align-items-center g-4">
@@ -800,7 +800,7 @@
                                 data-fa-transform="shrink-2 up-8 right-6"></span></span>
                         <div class="ms-3">
                             <h4 class="mb-0">3550 Submissions</h4>
-                            <p class="text-body-secondary fs-9 mb-0">3550/5000 AICTE report Submissionsp>
+                            <p class="text-body-secondary fs-9 mb-0">3550/5000 AICTE report Submissions </p>
                         </div>
                     </div>
                 </div>

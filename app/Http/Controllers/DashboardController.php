@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\RegisteredEvents;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,16 +15,19 @@ class DashboardController extends Controller
         if(Auth::user()->id == 1){
             return redirect()->to('/admin');
         }
-        $eventCompletions = RegisteredEvents::select('programs.type', DB::raw('count(*) as count'))
-        ->join('programs', 'registered_events.program_id', '=', 'programs.id')
-        ->where('registered_events.user_id', Auth::id())
-        ->groupBy('programs.type')
-        ->get()
-        ->mapWithKeys(function ($item) {
-            return [$item->type => $item->count];
-        });
+        // $eventCompletions = RegisteredEvents::select('programs.type', DB::raw('count(*) as count'))
+        // ->join('programs', 'registered_events.program_id', '=', 'programs.id')
+        // ->where('registered_events.user_id', Auth::id())
+        // ->groupBy('programs.type')
+        // ->get()
+        // ->mapWithKeys(function ($item) {
+        //     return [$item->type => $item->count];
+        // });
 
-    // dd($eventCompletions);
-        return view("dashboard.index", compact('eventCompletions'));
+        $participation = RegisteredEvents::where('user_id', Auth::id())->count();
+        // $acceptance = Activity::get();
+
+    // dd($acceptance);
+        return view("dashboard.index", compact('participation'));
     }
 }
