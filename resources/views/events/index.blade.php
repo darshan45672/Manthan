@@ -24,6 +24,11 @@
 <section class="features-event pt-120 pb-120">
     <div class="container">
         <div class="row gy-4 justify-content-center">
+            @if ($programs->isEmpty())
+            <center>
+                <h1 class="display-4">No Events Available</h1>
+            </center>
+            @else
             @foreach ($programs as $program)
             <div class="col-lg-4 col-md-6">
                 <div class="event-item wow fade-in-bottom" data-wow-delay="400ms">
@@ -46,6 +51,7 @@
                 </div>
             </div>
             @endforeach
+            @endif
         </div>
     </div>
 </section>
