@@ -23,6 +23,11 @@
 <section class="team-section pt-120 pb-120">
     <div class="container">
         <div class="row gy-4 justify-content-center">
+            @if ($gallery->isEmpty())
+                <center>
+                    <h1 class="display-4">No Galleries Available</h1>
+                </center>
+            @else
             @foreach ($gallery as $item)    
             <div class="col-xl-4 col-lg-4 col-md-6">
                 <div class="team-item-2 wow fade-in-bottom" data-wow-delay="200ms">
@@ -41,6 +46,7 @@
                 </div>
             </div>
             @endforeach
+            @endif
         </div>
     </div>
 </section>

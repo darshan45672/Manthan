@@ -27,7 +27,7 @@
         <div class="row">
             @if ($posts->isEmpty())
             <center>
-                <h1 class="display-4">No Posts Available</h1>
+                <h1 class="display-4">No Blogs Available</h1>
             </center>
             @else
             <div class="col-lg-8">
