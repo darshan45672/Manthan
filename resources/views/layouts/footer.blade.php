@@ -51,10 +51,10 @@
                     <div class="footer-widget widget-2">
                         <h3 class="widget-header">Useful Links</h3>
                         <ul class="footer-list">
-                            <li><a href="{{ route('contact') }}">Featured Events</a></li>
-                            <li><a href="{{ route('contact') }}">Latest Events</a></li>
-                            <li><a href="{{ route('contact') }}">SDPs</a></li>
-                            <li><a href="{{ route('contact') }}">FDPs</a></li>
+                            <li><a href="{{ route('events') }}">Featured Events</a></li>
+                            <li><a href="{{ route('events') }}">Latest Events</a></li>
+                            <li><a href="{{ route('events') }}">SDPs</a></li>
+                            <li><a href="{{ route('events') }}">FDPs</a></li>
                             <li><a href="{{ route('blogs') }}">News & Blogs</a></li>
                         </ul>
                     </div>

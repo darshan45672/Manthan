@@ -23,6 +23,19 @@
 
 <section class="features-event pt-120 pb-120">
     <div class="container">
+        <div class="row mb-4 justify-content-center">
+            <div class="sidebar-widget">
+                <h3 class="widget-title">Search</h3>
+                <div class="search-box">
+                    <form action="{{ route('events') }}" method="GET" class="search-form">
+                        <input type="text" name="search" value="{{ request('search', '') }}" class="form-control" placeholder="Search">
+                        <button class="search-btn" type="submit">
+                            <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="row gy-4 justify-content-center">
             @if ($programs->isEmpty())
             <center>

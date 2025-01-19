@@ -59,7 +59,7 @@ class PostResource extends Resource
                 ])->columns(3)->collapsible(),
                 Section::make('Post Settings')->schema([
                     TagsInput::make('tags')->label('Tags')->required()->columnSpanFull(),
-                    Select::make('category_id')->label('Category')->relationship('category', 'name')->required(),
+                    Select::make('category_id')->label('Category')->relationship('category', 'name')->required()->preload()->searchable(),
                     ToggleButtons::make('published')->label('Publish the post')->boolean()->inline()->default(false),
                 ])->columns(2)->collapsible(),
             ]);
