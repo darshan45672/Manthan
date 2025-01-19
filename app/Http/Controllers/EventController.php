@@ -12,6 +12,22 @@ class EventController extends Controller
 {
     public function events(){
         $programs = Program::all();
+        if(request()->has('search')){
+            $search = request()->get('search');
+            $programs = Program::where('name','like',"%$search%")
+            ->orWhere('description', 'like', "%$search%")->get();
+        }
+        // dd($programs);
+        return view('events.index',compact('programs'));
+    }
+
+    public function eventType($type){
+        $programs = Program::where('type',$type)->get();
+        return view('events.index',compact('programs'));
+    }
+
+    public function featuredEvent(){
+        $programs = Program::where('is_featured',1)->get();
         return view('events.index',compact('programs'));
     }
 
