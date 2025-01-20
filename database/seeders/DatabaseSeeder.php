@@ -37,13 +37,13 @@ class DatabaseSeeder extends Seeder
         //     'is_admin' => false,
         // ]);
         
-        User::factory(2000)->create();
-        College::factory(50)->create();
-        Department::factory(50)->create();
+        // User::factory(2000)->create();
+        // College::factory(50)->create();
+        // Department::factory(50)->create();
 
-        Student::factory(500)->create();
-        Faculty::factory(500)->create();
-        HoD::factory(50)->create();
-        Principal::factory(10)->create();
+        // Student::factory(500)->create();
+        // Faculty::factory(500)->create();
+        // HoD::factory(50)->create();
+        // Principal::factory(10)->create();
     }
 }
