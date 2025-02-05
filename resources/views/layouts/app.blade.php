@@ -9,9 +9,9 @@
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
 
     @php
-        $header = Cache::rememberForever('cached_header', function () {
-            return view('layouts.cached.cacheHeader')->render();
-        });
+    $header = Cache::rememberForever('cached_header', function () {
+    return view('layouts.cached.cacheHeader')->render();
+    });
     @endphp
 
     {!! $header !!}
@@ -30,9 +30,9 @@
 
 <!-- JS here -->
 @php
-    $footer = Cache::rememberForever('cached_footer', function () {
-        return view('layouts.cached.cacheJs')->render();
-    });
+$footer = Cache::rememberForever('cached_footer', function () {
+return view('layouts.cached.cacheJs')->render();
+});
 @endphp
 
 {!! $footer !!}

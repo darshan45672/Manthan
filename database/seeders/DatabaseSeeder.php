@@ -38,8 +38,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         
         // User::factory(2000)->create();
-        // College::factory(50)->create();
-        // Department::factory(50)->create();
+        College::factory(50)->create();
+        Department::factory(50)->create();
 
         // Student::factory(500)->create();
         // Faculty::factory(500)->create();

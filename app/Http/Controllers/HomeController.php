@@ -14,34 +14,38 @@ use League\CommonMark\CommonMarkConverter;
 
 class HomeController extends Controller
 {
+    private $cacheDuration = 10;
     public function home()
     {
-        $cacheDuration = 60;
 
         $eventTypes = ['SDP', 'FDP', 'STTP', 'Workshop', 'Seminar', 'Conference', 'Webinar', 'Hackathon', 'Bootcamp', 'Other'];
     
-        $events = Cache::remember('home_events', $cacheDuration, function () {
+        $events = Cache::remember('home_events', $this->cacheDuration, function () {
             return Program::select('id', 'title', 'created_at')->latest()->with(['speakers:id,name'])->limit(4)->get();
         });
     
-        $posts = Cache::remember('home_posts', $cacheDuration, function () {
+        $posts = Cache::remember('home_posts', $this->cacheDuration, function () {
             return Post::select('id', 'title', 'created_at', 'category_id')->latest()->with(['category:id,name'])->limit(3)->get();
         });
     
-        $testimonials = Cache::remember('home_testimonials', $cacheDuration, function () {
-            return Testimonials::select('id', 'user_id', 'content', 'created_at')->where('is_published', true)->latest()->with(['user:id,name'])->get();
+        $testimonials = Cache::remember('home_testimonials', $this->cacheDuration, function () {
+            return Testimonials::where('is_published', true)->latest()->with(['user:id,name'])->get();
         });
-    
+
         $colleges = Cache::rememberForever('home_colleges', function () {
             return College::select('id', 'name')->limit(10)->get();
         });
-    
+
         return View::make('home.index', compact('eventTypes', 'events', 'posts', 'testimonials', 'colleges'))->render();
     }
 
-    public function about()
-    {
-        return view('about.index');
+    public function about(){
+
+        $testimonials = Cache::remember('about_testimonials', $this->cacheDuration, function () {
+            return Testimonials::where('is_published', true)->latest()->with(['user:id,name'])->get();
+        });
+
+        return view('about.index', compact('testimonials'));
     }
 
     public function contact()
