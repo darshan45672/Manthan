@@ -9,34 +9,34 @@ use App\Models\Testimonials;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use League\CommonMark\CommonMarkConverter;
 
 class HomeController extends Controller
 {
     public function home()
     {
+        $cacheDuration = 60;
+
         $eventTypes = ['SDP', 'FDP', 'STTP', 'Workshop', 'Seminar', 'Conference', 'Webinar', 'Hackathon', 'Bootcamp', 'Other'];
     
-        $events = Cache::remember('home_events', 300, function () {
-            return Program::orderBy('created_at', 'desc')->with('speakers')->limit(4)->get();
+        $events = Cache::remember('home_events', $cacheDuration, function () {
+            return Program::select('id', 'title', 'created_at')->latest()->with(['speakers:id,name'])->limit(4)->get();
         });
-
-        $posts = Cache::remember('home_posts', 300, function () {
-            return Post::orderBy('created_at', 'desc')->with('category')->limit(3)->get();
+    
+        $posts = Cache::remember('home_posts', $cacheDuration, function () {
+            return Post::select('id', 'title', 'created_at', 'category_id')->latest()->with(['category:id,name'])->limit(3)->get();
         });
-
-        $testimonials = Cache::remember('home_testimonials', 300, function () {
-            return Testimonials::where('is_published', true)
-                ->orderBy('created_at', 'desc')
-                ->with('user')
-                ->get();
+    
+        $testimonials = Cache::remember('home_testimonials', $cacheDuration, function () {
+            return Testimonials::select('id', 'user_id', 'content', 'created_at')->where('is_published', true)->latest()->with(['user:id,name'])->get();
         });
-
-        $colleges = Cache::remember('home_colleges', 600, function () {
-            return College::limit(10)->get();
+    
+        $colleges = Cache::rememberForever('home_colleges', function () {
+            return College::select('id', 'name')->limit(10)->get();
         });
-
-        return view('home.index', compact('eventTypes', 'events', 'posts', 'testimonials', 'colleges'));
+    
+        return View::make('home.index', compact('eventTypes', 'events', 'posts', 'testimonials', 'colleges'))->render();
     }
 
     public function about()
