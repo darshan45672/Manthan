@@ -8,57 +8,67 @@ use App\Models\ProgramExpectedOutcomes;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
-            if (Auth::user()->role == 'student') {
-                $client_college_id = Auth::user()->student->college_id;
-                $client_department_id = Auth::user()->student->department_id;
-            }
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
 
-            if (Auth::user()->role == 'faculty') {
-                $client_college_id = Auth::user()->faculty->college_id;
-                $client_department_id = Auth::user()->faculty->department_id;
-            }
+        $user = Auth::user();
+        $cacheDuration = 60;
 
-            if (Auth::user()->role == 'HoD') {
-                $client_college_id = Auth::user()->hod->college_id;
-                $client_department_id = Auth::user()->hod->department_id;
-            }
+        if ($user->role == 'student') {
+            $client_college_id = $user->student->college_id;
+            $client_department_id = $user->student->department_id;
+        }
 
-            
-            if (Auth::user()->role == 'Principle') {
-                $client_college_id = Auth::user()->principle->college_id;
-                
-                $activities = Activity::with('student', 'activityType', 'programExpectedOutcomes')
-                ->whereHas('student', function ($query) use ($client_college_id) {
-                    $query->where('college_id', $client_college_id);
-                })->get();
+        if ($user->role == 'faculty') {
+            $client_college_id = $user->faculty->college_id;
+            $client_department_id = $user->faculty->department_id;
+        }
 
-                // dd($activities);
-                return view('dashboard.activity.index', compact('activities'));
-            }
-            $activities = Activity::with('student', 'activityType', 'programExpectedOutcomes')
+        if ($user->role == 'HoD') {
+            $client_college_id = $user->hod->college_id;
+            $client_department_id = $user->hod->department_id;
+        }
+
+
+        if ($user->role == 'Principle') {
+            $client_college_id = $user->principle->college_id;
+
+            $activities = Cache::remember("activities_college_$client_college_id", $cacheDuration, function () use ($client_college_id) {
+                return Activity::with(['student', 'activityType', 'programExpectedOutcomes'])
+                    ->whereHas('student', function ($query) use ($client_college_id) {
+                        $query->where('college_id', $client_college_id);
+                    })->get();
+            });
+
+            return view('dashboard.activity.index', compact('activities'));
+        }
+
+        $activities = Cache::remember("activities_department_$client_department_id", $cacheDuration, function () use ($client_college_id, $client_department_id) {
+            return Activity::with(['student', 'activityType', 'programExpectedOutcomes'])
                 ->whereHas('student', function ($query) use ($client_college_id, $client_department_id) {
                     $query->where('college_id', $client_college_id)
                         ->where('department_id', $client_department_id);
                 })->get();
-        } else {
-            return redirect()->route('login');
-        }
+        });
 
-        // dd($activities);
         return view('dashboard.activity.index', compact('activities'));
     }
 
     public function create()
     {
-        $activityTypes = ActivityType::all();
-        $peos = ProgramExpectedOutcomes::all();
+        $cacheDuration = 60;
+
+        $activityTypes = Cache::remember('activity_types', $cacheDuration, fn() => ActivityType::all());
+        $peos = Cache::remember('program_expected_outcomes', $cacheDuration, fn() => ProgramExpectedOutcomes::all());
+
         return view('dashboard.activity.create', compact('activityTypes', 'peos'));
     }
 
@@ -70,7 +80,6 @@ class ActivityController extends Controller
                 if (Auth::user()->student) {
                     $activity = Activity::with('student', 'activityType', 'programExpectedOutcomes')
                         ->where('student_id', Auth::user()->student->id)->where('id', $id)->first();
-                    // dd(vars: $activity);
                 } else {
                     dd('no data found');
                 }
@@ -83,8 +92,6 @@ class ActivityController extends Controller
 
         $activityTypes = ActivityType::all();
         $peos = ProgramExpectedOutcomes::all();
-
-        // dd($peos);
 
         return view('dashboard.activity.edit', compact('activity', 'activityTypes', 'peos'));
     }
@@ -105,8 +112,6 @@ class ActivityController extends Controller
             'report' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'certificate' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048',
         ]);
-
-        // dd($request->all(),);
 
         if ($request->hasFile('report')) {
             if ($activity->file) {
@@ -142,13 +147,11 @@ class ActivityController extends Controller
             'description' => $request->description,
         ]);
 
-        // dd("done update");   
         return redirect()->route('user.activity.index')->with('success', 'Activity updated successfully');
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
 
         if (Auth::check()) {
             if (Auth::user()->role == 'student') {
@@ -250,8 +253,6 @@ class ActivityController extends Controller
                         $status = 'pending';
                         break;
                 }
-
-                // dd($status);
 
                 if ($activity) {
                     $activity->update([
