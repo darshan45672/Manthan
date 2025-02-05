@@ -7,21 +7,38 @@ use App\Models\HoD;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class HoDController extends Controller
 {
-    public function index(){
-        $hods = HoD::where('college_id', Auth::user()->principle->college_id)->get();
-        // dd($hods);
+    public function index()
+    {
+        $user = Auth::user();
+
+        if ($user->role !== 'Principle') {
+            abort(403, 'Unauthorized');
+        }
+
+        $collegeId = $user->principle->college_id;
+
+        $hods = Cache::remember("hods_college_{$collegeId}", now()->addMinutes(10), function () use ($collegeId) {
+            return HoD::where('college_id', $collegeId)
+                ->with('department')
+                ->get();
+        });
+
         return view('dashboard.hod.index', compact('hods'));
     }
 
     public function create()
     {
-        $departments = Department::all();
+        $departments = Cache::remember('departments_list', now()->addMinutes(30), function () {
+            return Department::all();
+        });
+        
         return view('dashboard.hod.create', compact('departments'));
     }
 
@@ -29,10 +46,6 @@ class HoDController extends Controller
     {
         if (Auth::check()) {
             if (Auth::user()->role == 'Principle') {
-                // $request->merge([
-                //     'status' => $request->has('status') ? true : false,
-                //     'is_cordinator' => $request->has('is_cordinator') ? true : false,
-                // ]);
 
                 $validated = $request->validate([
                     'name' => 'required|string|max:255',
@@ -43,14 +56,11 @@ class HoDController extends Controller
                     'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
                     'college' => 'required|exists:colleges,id',
                     'branch' => 'required|exists:departments,id',
-                    // 'designation' => 'required|string',
                     'qualification' => 'required|array',
                     'expierience' => 'required|string',
                     'specialization' => 'required|array',
                     'join_date' => 'required|date',
                     'leave_date' => 'nullable|date|after:join_date',
-                    // 'status' => 'nullable|boolean',
-                    // 'is_cordinator' => 'nullable|boolean'
                 ]);
 
                 try {

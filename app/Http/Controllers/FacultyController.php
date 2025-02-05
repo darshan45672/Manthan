@@ -8,6 +8,7 @@ use App\Models\Faculty;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -16,30 +17,38 @@ class FacultyController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role == 'HoD') {
-            $client_college_id = Auth::user()->faculty->college_id;
-            $client_department_id = Auth::user()->faculty->department_id;
+        $user = Auth::user();
 
-            $faculties = Faculty::where('college_id', $client_college_id)
-                ->where('department_id', $client_department_id)
-                ->get();
-        }
+        $cacheDuration = 60;
 
-        if (Auth::user()->role == 'Principle') {
-            $client_college_id = Auth::user()->principle->college_id;
-            $faculties = Faculty::where('college_id', $client_college_id)
-                ->get();
-        }
+        $faculties = match ($user->role) {
+            'HoD' => Cache::remember(
+                "faculties_hod_{$user->faculty->college_id}_{$user->faculty->department_id}",
+                $cacheDuration,
+                fn() => Faculty::where([
+                    'college_id' => $user->faculty->college_id,
+                    'department_id' => $user->faculty->department_id,
+                ])->get()
+            ),
+            'Principle' => Cache::remember(
+                "faculties_principle_{$user->principle->college_id}",
+                $cacheDuration,
+                fn() => Faculty::where('college_id', $user->principle->college_id)->get()
+            ),
+            default => [],
+        };
 
-        // dd($faculties);
         return view('dashboard.faculty.index', compact('faculties'));
     }
 
     public function create()
     {
-        $college = College::all();
-        $departments = Department::all();
+        $cacheDuration = 60;
+
+        $college = Cache::remember('colleges', $cacheDuration, fn() => College::all());
+        $departments = Cache::remember('departments', $cacheDuration, fn() => Department::all());
         $users = User::where('role', 'faculty')->whereDoesntHave('faculty')->get();
+
         return view('dashboard.faculty.create', compact('college', 'departments', 'users'));
     }
 

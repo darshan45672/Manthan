@@ -7,84 +7,101 @@ use App\Models\RegisteredEvents;
 use App\Models\Speakers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class EventController extends Controller
 {
-    public function events(){
-        $programs = Program::all();
-        if(request()->has('search')){
+    private $cacheDuration = 60;
+    public function events()
+    {
+
+        request()->validate([
+            'search' => 'nullable|string|max:255',
+        ]);
+
+        if (request()->filled('search')) {
             $search = request()->get('search');
-            $programs = Program::where('name','like',"%$search%")
-            ->orWhere('description', 'like', "%$search%")->get();
+
+            $programs = Cache::remember("events_search_{$search}", $this->cacheDuration, function () use ($search) {
+                return Program::where('name', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%")
+                    ->get();
+            });
+        } else {
+            $programs = Cache::remember('events_list', $this->cacheDuration, function () {
+                return Program::orderBy('start_date', 'asc')->get();
+            });
         }
-        // dd($programs);
-        return view('events.index',compact('programs'));
+
+        return view('events.index', compact('programs'));
+    }
+    public function eventType($type)
+    {
+        $programs = Cache::remember("event_type_{$type}", $this->cacheDuration, function () use ($type) {
+            return Program::where('type', $type)->get();
+        });
+    
+        return view('events.index', compact('programs'));
     }
 
-    public function eventType($type){
-        $programs = Program::where('type',$type)->get();
-        return view('events.index',compact('programs'));
+    public function featuredEvent()
+    {
+        $programs = Cache::remember('featured_events', $this->cacheDuration, function () {
+            return Program::where('is_featured', 1)->get();
+        });
+        return view('events.index', compact('programs'));
     }
 
-    public function featuredEvent(){
-        $programs = Program::where('is_featured',1)->get();
-        return view('events.index',compact('programs'));
-    }
-
-    public function show($id){
+    public function show($id)
+    {
         $program = Program::find($id);
-        if(!$program){
+        if (!$program) {
             abort(404);
         }
 
-        $speakers = Speakers::where('program_id',$id)->get();
+        $speakers = Speakers::where('program_id', $id)->get();
 
-        if(Auth::check()){
-            $userId = Auth::id(); 
-            $registeredPrograms = RegisteredEvents::with('program')->where('user_id', $userId)->where('program_id', $id)->get(); 
-            // dd($registeredPrograms);    
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $registeredPrograms = RegisteredEvents::with('program')->where('user_id', $userId)->where('program_id', $id)->get();   
             if (count($registeredPrograms)) {
-                // dd('more than 0');
                 return view('events.show', compact('program', 'speakers', 'registeredPrograms'));
             }
-            // dd('less than 0');
             $registeredPrograms = 0;
             return view('events.show', compact('program', 'speakers', 'registeredPrograms'));
-        }else{
+        } else {
             return view('events.show', compact('program', 'speakers'));
         }
     }
 
-    public function register($id){
+    public function register($id)
+    {
         $program = Program::find($id);
-        if(!$program){
+        if (!$program) {
             abort(404);
         }
 
-        // dd('called');
+        if (Auth::check()) {
+            $alreadyRegistered = RegisteredEvents::where('program_id', $id)->where('user_id', Auth::user()->id)->first();
 
-        if(Auth::check()){
-            $alreadyRegistered = RegisteredEvents::where('program_id',$id)->where('user_id',Auth::user()->id)->first();
-
-            if($alreadyRegistered){
-                // dd('already registered');
-                return redirect()->route('events.show',$id)->with('error', 'You have already registered for this event.');
+            if ($alreadyRegistered) {
+                return redirect()->route('events.show', $id)->with('error', 'You have already registered for this event.');
             }
 
             RegisteredEvents::create([
                 'program_id' => $id,
-                'user_id'=> Auth::user()->id,
-                'is_paid'=> 0,
+                'user_id' => Auth::user()->id,
+                'is_paid' => 0,
                 'registration_date' => now(),
                 'is_attended' => 0,
             ]);
 
-            // dd('done');
             return redirect()->route('events.show', $id)->with('success', 'You have successfully registered for the event.');
-        } 
+        }
     }
 
-    public function viewEvents(){
+    public function viewEvents()
+    {
         $events = match (Auth::user()->role) {
             'student' => Program::where('event_date', '>=', now())->where('type', '!=', 'FDP')->get(),
             'faculty', 'HoD', 'Principle' => Program::where('event_date', '>=', now())->where('type', '!=', 'SDP')->get(),
@@ -95,12 +112,12 @@ class EventController extends Controller
         return view('dashboard.events.index', compact('events'));
     }
 
-    public function myEvents(){
+    public function myEvents()
+    {
         $user = Auth::user();
 
-        
         $events = match ($user->role) {
-            'student' =>$user->registeredPrograms()->where('event_date', '>=', now())->where('type', '!=', 'FDP')->get(),
+            'student' => $user->registeredPrograms()->where('event_date', '>=', now())->where('type', '!=', 'FDP')->get(),
             'faculty', 'HoD', 'Principle' => $user->registeredPrograms()->where('event_date', '>=', now())->where('type', '!=', 'SDP')->get(),
             default => Program::where('event_date', '>=', now())->get(),
         };

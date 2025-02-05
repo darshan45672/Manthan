@@ -93,22 +93,3 @@
     <button id="scroll-top" class="scroll-to-top"><i class="fa-regular fa-arrow-up-long"></i></button>
 </div>
 <!--scrollup-->
-
-<!-- JS here -->
-<script src="{{ asset('ui/assets/js/vendor/jquary-3.6.0.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/bootstrap-bundle.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/jquery.isotope.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/waypoints.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/moment.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/daterangepicker.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/venobox.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/odometer.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/countdown.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/meanmenu.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/smooth-scroll.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/imagesloaded-pkgd.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/wow.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/nice-select.js') }}"></script>
-<script src="{{ asset('ui/assets/js/vendor/swiper.min.js') }}"></script>
-<script src="{{ asset('ui/assets/js/main.js') }}"></script>
