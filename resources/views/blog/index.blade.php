@@ -26,8 +26,21 @@
     <div class="container">
         <div class="row">
             @if ($posts->isEmpty())
+            <div class="row mb-4 justify-content-center">
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Search</h3>
+                    <div class="search-box">
+                        <form action="{{ route('blogs') }}" method="GET" class="search-form">
+                            <input type="text" name="search" value="{{ request('search', '') }}" class="form-control" placeholder="Search">
+                            <button class="search-btn" type="submit">
+                                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <center>
-                <h1 class="display-4">No Blogs Available</h1>
+                <h1 class="display-4 mt-3">No Blogs Available</h1>
             </center>
             @else
             <div class="col-lg-8">

@@ -14,14 +14,14 @@ use League\CommonMark\CommonMarkConverter;
 
 class HomeController extends Controller
 {
-    private $cacheDuration = 10;
+    private $cacheDuration = 60;
     public function home()
     {
 
         $eventTypes = ['SDP', 'FDP', 'STTP', 'Workshop', 'Seminar', 'Conference', 'Webinar', 'Hackathon', 'Bootcamp', 'Other'];
     
         $events = Cache::remember('home_events', $this->cacheDuration, function () {
-            return Program::select('id', 'title', 'created_at')->latest()->with(['speakers:id,name'])->limit(4)->get();
+            return Program::latest()->with(['speakers:id,name'])->limit(4)->get();
         });
     
         $posts = Cache::remember('home_posts', $this->cacheDuration, function () {

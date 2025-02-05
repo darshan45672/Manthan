@@ -17,7 +17,7 @@ class GalleryController extends Controller
 
     public function show($id){
         $gallery = Cache::remember("gallery_show_{$id}", 600, function () use ($id) {
-            return Gallery::with('gallery_images')->find($id);
+            return Gallery::find($id);
         });
         
         return view('gallery.show', compact('gallery'));

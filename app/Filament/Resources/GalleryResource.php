@@ -53,7 +53,7 @@ class GalleryResource extends Resource
                     FileUpload::make('gallery_images')->image()->acceptedFileTypes(['image/*'])->multiple()
                         ->deleteUploadedFileUsing(fn($file) => Storage::disk('public')->delete($file))
                         ->directory('gallery_images')->uploadingMessage('Uploading...')
-                        ->downloadable()->preserveFilenames()->openable(),
+                        ->downloadable()->preserveFilenames()->openable()->reorderable()->panelLayout('grid'),
                     Toggle::make('is_published')->label('Published')->default(false),
                 ])->columns(2)->collapsible(),
             ]);
