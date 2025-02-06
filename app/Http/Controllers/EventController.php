@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Program;
 use App\Models\RegisteredEvents;
 use App\Models\Speakers;
+use App\Notifications\EventRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -96,6 +97,7 @@ class EventController extends Controller
                 'is_attended' => 0,
             ]);
 
+            Auth::user()->notify(new EventRegistered($program));
             return redirect()->route('events.show', $id)->with('success', 'You have successfully registered for the event.');
         }
     }
