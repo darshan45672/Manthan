@@ -14,7 +14,6 @@ class TestimonialChartWidget extends ChartWidget
 
     protected function getData(): array
     {
-        // Fetch the count of testimonials grouped by user type
         $userTestimonialCounts = [
             'Principals' => Testimonials::whereHas('user', fn ($query) => $query->where('role', 'Principle'))->count(),
             'Department Heads' => Testimonials::whereHas('user', fn ($query) => $query->where('role', 'HoD'))->count(),

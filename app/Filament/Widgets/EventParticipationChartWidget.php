@@ -14,7 +14,6 @@ class EventParticipationChartWidget extends ChartWidget
 
     protected function getData(): array
     {
-        // Fetch dynamic registration data grouped by program type
         $registrationCounts = Program::query()
             ->join('registered_events', 'programs.id', '=', 'registered_events.program_id')
             ->selectRaw('programs.type, COUNT(registered_events.id) as total_registrations')
