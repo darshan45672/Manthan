@@ -41,7 +41,7 @@ class FacultyNotification extends Notification
                 ->subject('Welcome ' . $this->faculty->user->name)
                 ->greeting('Hello ' . $this->faculty->user->name . ',')
                 ->line('You have been successfully registered as a faculty in the system.')
-                ->action('View Your Profile', url('/your-profile'))  // Replace with actual URL if needed
+                ->action('View Your Profile', url('/user-dashboard/profile'))
                 ->line('Thank you for being a part of our institution!');
         }
         if($this->action === 'updated'){
@@ -49,7 +49,7 @@ class FacultyNotification extends Notification
                 ->subject('Profile Updated ' . $this->faculty->user->name)
                 ->greeting('Hello ' . $this->faculty->user->name . ',')
                 ->line('Your faculty profile has been successfully updated in the system.')
-                ->action('View Your Profile', url('/your-profile'))  // Replace with actual URL if needed
+                ->action('View Your Profile', url('/user-dashboard/profile'))
                 ->line('Thank you for being a part of our institution!');
         }
     }
