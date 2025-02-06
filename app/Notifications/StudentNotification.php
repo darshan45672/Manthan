@@ -42,7 +42,7 @@ class StudentNotification extends Notification
                 ->line('You have been successfully registered as a student in the system.')
                 ->line('USN: ' . $this->student->usn)
                 ->line('Semester: ' . $this->student->semester)
-                ->action('View Your Profile', url('/your-profile'))  // Replace with actual URL if needed
+                ->action('View Your Profile', url('/user-dashboard/profile'))  
                 ->line('Thank you for being a part of our institution!');
         }
         if($this->action === 'updated'){
@@ -52,7 +52,7 @@ class StudentNotification extends Notification
                 ->line('Your student profile has been successfully updated in the system.')
                 ->line('USN: ' . $this->student->usn)
                 ->line('Semester: ' . $this->student->semester)
-                ->action('View Your Profile', url('/your-profile'))  // Replace with actual URL if needed
+                ->action('View Your Profile', url('/user-dashboard/profile'))
                 ->line('Thank you for being a part of our institution!');
         }
     }
