@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Program;
 use App\Models\RegisteredEvents;
 use App\Models\Speakers;
+use App\Notifications\EventRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -40,7 +41,7 @@ class EventController extends Controller
         $programs = Cache::remember("event_type_{$type}", $this->cacheDuration, function () use ($type) {
             return Program::where('type', $type)->get();
         });
-    
+
         return view('events.index', compact('programs'));
     }
 
@@ -63,7 +64,7 @@ class EventController extends Controller
 
         if (Auth::check()) {
             $userId = Auth::id();
-            $registeredPrograms = RegisteredEvents::with('program')->where('user_id', $userId)->where('program_id', $id)->get();   
+            $registeredPrograms = RegisteredEvents::with('program')->where('user_id', $userId)->where('program_id', $id)->get();
             if (count($registeredPrograms)) {
                 return view('events.show', compact('program', 'speakers', 'registeredPrograms'));
             }
@@ -96,31 +97,39 @@ class EventController extends Controller
                 'is_attended' => 0,
             ]);
 
+            Auth::user()->notify(new EventRegistered($program));
             return redirect()->route('events.show', $id)->with('success', 'You have successfully registered for the event.');
         }
     }
 
     public function viewEvents()
     {
-        $events = match (Auth::user()->role) {
-            'student' => Program::where('event_date', '>=', now())->where('type', '!=', 'FDP')->get(),
-            'faculty', 'HoD', 'Principle' => Program::where('event_date', '>=', now())->where('type', '!=', 'SDP')->get(),
-            default => Program::where('event_date', '>=', now())->get(),
-        };
+        $user = Auth::user();
+        $cacheKey = "events_{$user->role}";
 
-        // dd($events);
+        $events = Cache::remember($cacheKey, now()->addMinutes(10), function () use ($user) {
+            return match ($user->role) {
+                'student' => Program::where('event_date', '>=', now())->where('type', '!=', 'FDP')->get(),
+                'faculty', 'HoD', 'Principle' => Program::where('event_date', '>=', now())->where('type', '!=', 'SDP')->get(),
+                default => Program::where('event_date', '>=', now())->get(),
+            };
+        });
         return view('dashboard.events.index', compact('events'));
     }
 
     public function myEvents()
     {
         $user = Auth::user();
+        $cacheKey = "my_events_{$user->id}";
 
-        $events = match ($user->role) {
-            'student' => $user->registeredPrograms()->where('event_date', '>=', now())->where('type', '!=', 'FDP')->get(),
-            'faculty', 'HoD', 'Principle' => $user->registeredPrograms()->where('event_date', '>=', now())->where('type', '!=', 'SDP')->get(),
-            default => Program::where('event_date', '>=', now())->get(),
-        };
+        $events = Cache::remember($cacheKey, now()->addMinutes(1), function () use ($user) {
+            return match ($user->role) {
+                'student' => $user->registeredPrograms()->where('event_date', '>=', now())->where('type', '!=', 'FDP')->get(),
+                'faculty', 'HoD', 'Principle' => $user->registeredPrograms()->where('event_date', '>=', now())->where('type', '!=', 'SDP')->get(),
+                default => Program::where('event_date', '>=', now())->get(),
+            };
+        });
+
         return view('dashboard.events.events', compact('events'));
     }
 }

@@ -94,7 +94,6 @@ class ProfileController extends Controller
             $user = User::findOrFail(Auth::id());
         
             if ($request->hasFile('image')) {
-                // dd("called");
                
                 if ($user->image) {
                     Storage::disk('public')->delete($user->image);

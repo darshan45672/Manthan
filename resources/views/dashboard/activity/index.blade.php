@@ -32,6 +32,15 @@
                     </tr>
                 </thead>
                 <tbody class="list" id="project-list-table-body">
+                    @if ($activities->isEmpty())
+                    <center>
+                        <tr class="position-static">
+                            <td class="align-center justify-content-center time white-space-nowrap ps-0 activityTitle py-4" colspan="10">
+                                <h1>No Activities Found</h1>
+                            </td>
+                        </tr>
+                    </center>
+                    @endif
                     @foreach ($activities as $activity)
                     <tr class="position-static">
                         <td class="align-middle time white-space-nowrap ps-0 activityTitle py-4">
