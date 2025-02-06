@@ -16,10 +16,8 @@ class UserChartWidget extends ChartWidget
 
     protected function getData(): array
     {
-        // Fetch the selected college name from the filter
         $collegeName = $this->filters['college'] ?? null;
 
-        // Filter user counts by role and college name
         $userCounts = [
             'Principals' => User::where('role', 'Principle')
                 ->when($collegeName, function ($query) use ($collegeName) {

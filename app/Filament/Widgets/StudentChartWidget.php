@@ -14,7 +14,6 @@ class StudentChartWidget extends ChartWidget
 
     protected function getData(): array
     {
-        // Fetch department names and student counts
         $studentCounts = Department::withCount('students')
             ->get()
             ->mapWithKeys(fn($department) => [$department->name => $department->students_count]);
