@@ -25,7 +25,7 @@ class HomeController extends Controller
         });
     
         $posts = Cache::remember('home_posts', $this->cacheDuration, function () {
-            return Post::select('id', 'title', 'created_at', 'category_id')->latest()->with(['category:id,name'])->limit(3)->get();
+            return Post::latest()->with(['category'])->limit(3)->get();
         });
     
         $testimonials = Cache::remember('home_testimonials', $this->cacheDuration, function () {
@@ -33,7 +33,7 @@ class HomeController extends Controller
         });
 
         $colleges = Cache::rememberForever('home_colleges', function () {
-            return College::select('id', 'name')->limit(10)->get();
+            return College::limit(10)->get();
         });
 
         return View::make('home.index', compact('eventTypes', 'events', 'posts', 'testimonials', 'colleges'))->render();

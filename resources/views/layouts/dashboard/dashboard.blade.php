@@ -15,7 +15,7 @@ return view('layouts.dashboard.cached.cachedHeader')->render();
     <main class="main" id="top">
 
         @php
-        $navbar = Cache::rememberForever('cached_dashboard_navbar', function () {
+        $navbar = Cache::remember('cached_dashboard_navbar', now()->addSeconds(5) ,function () {
         return view('layouts.dashboard.includes.navbar')->render();
         });
         @endphp

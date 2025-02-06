@@ -50,7 +50,7 @@
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="form-floating">
-                    <input class="form-control @error('email') is-invalid @enderror" id="floatingInputEmail" type="text"
+                    <input class="form-control @error('email') is-invalid @enderror" id="floatingInputEmail" type="email"
                         placeholder="email" value="{{ old('email', $user->email) }}" name="email" required/>
                     <label for="floatingInputEmail">Email</label>
                     @error('email')
