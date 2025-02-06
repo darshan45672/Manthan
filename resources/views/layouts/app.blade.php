@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    
+
     @include('layouts.navigation')
 
     @yield('content')
@@ -37,5 +37,23 @@ return view('layouts.cached.cacheJs')->render();
 @endphp
 
 {!! $footer !!}
+
+<script>
+    import Echo from 'laravel-echo';
+ 
+ import Pusher from 'pusher-js';
+ window.Pusher = Pusher;
+  
+ window.Echo = new Echo({
+     broadcaster: 'pusher',
+     key: import.meta.env.VITE_PUSHER_APP_KEY,
+     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+     forceTLS: true
+ });
+ window.Echo.channel('events-channel')
+    .listen('.event.created', (data) => {
+        console.log('New Event:', data);
+    });
+</script>
 
 </html>

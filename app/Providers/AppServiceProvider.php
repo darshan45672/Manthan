@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\EventCreated;
+use App\Listeners\SendEventNotification;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Event::listen(
+            EventCreated::class,
+            SendEventNotification::class,
+        );
     }
 }
