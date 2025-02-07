@@ -72,7 +72,8 @@ class HoDController extends Controller
                         $originalFileName = $file->getClientOriginalName();
                         $fileName = time() . '-' . $originalFileName;
 
-                        $imagePath = $file->storeAs('users', $fileName, 'public');
+                        $imagePath = $file->storeAs('users', $fileName, 's3');
+                        Storage::disk('s3')->setVisibility($imagePath, 'public');
                     }
 
                     $user = User::create([

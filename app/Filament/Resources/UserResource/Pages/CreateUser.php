@@ -31,7 +31,7 @@ class CreateUser extends CreateRecord
                 TextInput::make('email')->email()->required()->maxLength(255)->unique(ignoreRecord: true),
             ]),
             Step::make('User Additional Information')->schema([
-                FileUpload::make('image')->image()->directory('users')->nullable()->downloadable()->preserveFilenames()->openable(),
+                FileUpload::make('image')->image()->disk("s3")->visibility('public')->directory('users')->nullable()->downloadable()->preserveFilenames()->openable(),
                 Textarea::make('address')->nullable(),
             ]),
             Step::make('User role and credentials')->schema([
@@ -52,8 +52,6 @@ class CreateUser extends CreateRecord
 
     protected function afterCreate(): void
     {
-        // Send notification to the newly created user
-        // dd("called");
         $this->record->notify(new UserNotification(0));
     }
 

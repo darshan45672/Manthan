@@ -115,25 +115,27 @@ class ActivityController extends Controller
 
         if ($request->hasFile('report')) {
             if ($activity->file) {
-                Storage::disk('public')->delete($activity->file);
+                Storage::disk('s3')->delete($activity->file);
             }
 
             $file = $request->file('report');
             $originalFileName = $file->getClientOriginalName();
             $fileName = time() . '-' . $originalFileName;
 
-            $path = $file->storeAs('activities/report', $fileName, 'public');
+            $path = $file->storeAs('activities/report', $fileName, 's3');
+            Storage::disk('s3')->setVisibility($path, 'public');
             $activity->file = $path;
         }
 
         if ($request->hasFile('certificate')) {
             if ($activity->certificate) {
-                Storage::disk('public')->delete($activity->certificate);
+                Storage::disk('s3')->delete($activity->certificate);
             }
 
             $file = $request->file('certificate');
             $fileName = time() . '-' . $file->getClientOriginalName();
             $path = $file->storeAs('activities/certificate', $fileName, 'public');
+            Storage::disk('s3')->setVisibility($path,'public');
             $activity->certificate = $path;
         }
 
@@ -172,25 +174,27 @@ class ActivityController extends Controller
 
                     if ($request->hasFile('report')) {
                         if ($activity->file) {
-                            Storage::disk('public')->delete($activity->file);
+                            Storage::disk('s3')->delete($activity->file);
                         }
 
                         $file = $request->file('report');
                         $originalFileName = $file->getClientOriginalName();
                         $fileName = time() . '-' . $originalFileName;
 
-                        $path = $file->storeAs('activities/report', $fileName, 'public');
+                        $path = $file->storeAs('activities/report', $fileName, 's3');
+                        Storage::disk('s3')->setVisibility($path, 'public');
                         $activity->file = $path;
                     }
 
                     if ($request->hasFile('certificate')) {
                         if ($activity->certificate) {
-                            Storage::disk('public')->delete($activity->certificate);
+                            Storage::disk('s3')->delete($activity->certificate);
                         }
 
                         $file = $request->file('certificate');
                         $fileName = time() . '-' . $file->getClientOriginalName();
-                        $path = $file->storeAs('activities/certificate', $fileName, 'public');
+                        $path = $file->storeAs('activities/certificate', $fileName, 's3');
+                        Storage::disk('s3')->setVisibility($path,'public');
                         $activity->certificate = $path;
                     }
 
@@ -223,10 +227,10 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
         if ($activity) {
             if ($activity->file) {
-                Storage::disk('public')->delete($activity->file);
+                Storage::disk('s3')->delete($activity->file);
             }
             if ($activity->certificate) {
-                Storage::disk('public')->delete($activity->certificate);
+                Storage::disk('s3')->delete($activity->certificate);
             }
             $activity->delete();
             return redirect()->route('user.activity.index')->with('success', 'Activity deleted successfully');

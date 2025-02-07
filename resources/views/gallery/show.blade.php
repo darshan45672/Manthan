@@ -28,7 +28,7 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
                 <div class="team-item-2 wow fade-in-bottom" data-wow-delay="200ms">
                     <div class="team-thumb">
-                        <img src="{{ Storage::url($item) }}" alt="team">
+                        <img src="{{ Storage::disk('s3')->url($item) }}" alt="team">
                     </div>
                 </div>
             </div>

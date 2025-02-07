@@ -89,7 +89,8 @@ class FacultyController extends Controller
                         $originalFileName = $file->getClientOriginalName();
                         $fileName = time() . '-' . $originalFileName;
 
-                        $imagePath = $file->storeAs('users', $fileName, 'public');
+                        $imagePath = $file->storeAs('users', $fileName, 's3');
+                        Storage::disk('s3')->setVisibility($imagePath, 'public');
                     }
 
                     $user = User::create([
@@ -142,10 +143,11 @@ class FacultyController extends Controller
                 if ($faculty) {
                     try {
                         DB::beginTransaction();
-                        // dd("going to delete");
+                        // dd("going to delete")
                         $faculty->delete();
                         // dd("deleted");
 
+                        Storage::disk('s3')->delete($user->image);
                         // dd("deleting the user");
                         $user->delete();
 

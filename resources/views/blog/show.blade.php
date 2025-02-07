@@ -28,7 +28,7 @@
                 <div class="blog-details-top-wrap">
                     <div class="blog-details-top">
                         <div class="blog-details-thumb">
-                            <img src="{{ Storage::url($blog->image) }}" alt="blog">
+                            <img src="{{ Storage::disk('s3')->url($blog->image) }}" alt="blog">
                         </div>
                         <ul class="post-meta">
                             <li><i class="fa-sharp fa-regular fa-clock"></i>{{
@@ -135,7 +135,7 @@
                     <h3 class="widget-title">Recent Post</h3>
                     @foreach ($posts as $post)
                     <div class="sidebar-post">
-                        <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}">
+                        <img src="{{ Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
                         <div class="post-content">
                             <h3 class="title"><a href="#">{{ $post->title }}</a></h3>
                             <ul class="post-meta">

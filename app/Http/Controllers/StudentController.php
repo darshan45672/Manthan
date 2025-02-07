@@ -8,6 +8,8 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
+use Storage;
 
 class StudentController extends Controller
 {
@@ -82,7 +84,8 @@ class StudentController extends Controller
                         $originalFileName = $file->getClientOriginalName();
                         $fileName = time() . '-' . $originalFileName;
 
-                        $imagePath = $file->storeAs('users', $fileName, 'public');
+                        $imagePath = $file->storeAs('users', $fileName, 's3');
+                        FacadesStorage::disk('s3')->setVisibility($imagePath, 'public');
                         $user->update(['image' => $imagePath]);
                     }
             

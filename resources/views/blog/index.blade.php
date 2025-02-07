@@ -47,7 +47,7 @@
                 @foreach ($posts as $post)
                 <div class="post-card-4 post-inner-2 fade-top">
                     <div class="post-thumb">
-                        <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}">
+                        <img src="{{ Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
                     </div>
                     <div class="post-content-wrap">
                         <div class="post-content">
@@ -101,7 +101,7 @@
                     <h3 class="widget-title">Recent Post</h3>
                     @foreach ($posts as $post)
                     <div class="sidebar-post">
-                        <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}">
+                        <img src="{{ Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
                         <div class="post-content">
                             <h3 class="title"><a href="#">{{ $post->title }}</a></h3>
                             <ul class="post-meta">

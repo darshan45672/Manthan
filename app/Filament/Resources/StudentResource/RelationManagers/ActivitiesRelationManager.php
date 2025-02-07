@@ -75,11 +75,13 @@ class ActivitiesRelationManager extends RelationManager
                             'rejected' => 'Rejected',
                         ])->required()->default('pending'),
                         Select::make('program_expected_outcomes_id')->relationship('programExpectedOutcomes', 'label')->searchable()->required()->preload(),
-                        FileUpload::make('file')->directory('activities/report')->preserveFilenames()->openable()->downloadable()->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])->required(),
+                        FileUpload::make('file')->directory('activities/report')->preserveFilenames()->openable()->downloadable()
+                        ->acceptedFileTypes(['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])->required()
+                        ->disk('s3')->visibility('public')->label('Upload Report'),
                         FileUpload::make('certificate')
                             ->directory('activities/certificate')->preserveFilenames()
-                            ->openable()->downloadable()->multiple()->nullable()
-                            ->acceptedFileTypes(['application/pdf', 'image/webp', 'image/png', 'image/jpeg', 'image/heic'])
+                            ->openable()->downloadable()->nullable()
+                            ->acceptedFileTypes(['application/pdf', 'image/webp', 'image/png', 'image/jpeg', 'image/heic'])->disk('s3')->visibility('public')
                             ->label('Upload Certificates'),
                     ])->columns(2),
                 ])->columnSpanFull(),
@@ -98,7 +100,7 @@ class ActivitiesRelationManager extends RelationManager
                 TextColumn::make('start_date')->dateTime()->toggleable(isToggledHiddenByDefault: true)->searchable(),
                 TextColumn::make('end_date')->dateTime()->toggleable(isToggledHiddenByDefault: true)->searchable(),
                 TextColumn::make('hours')->searchable(),
-                ImageColumn::make('certificate')->stacked()->circular()->limit(3)->limitedRemainingText(size: 'sm')->extraImgAttributes(['loading' => 'lazy']),
+                ImageColumn::make('certificate')->limitedRemainingText(size: 'sm')->extraImgAttributes(['loading' => 'lazy'])->disk('s3'),
                 SelectColumn::make('status')->options([
                     'pending' => 'Pending',
                     'approved' => 'Approved',

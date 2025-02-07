@@ -8,8 +8,8 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('ui/assets/img/favicon.png') }}">
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="//fonts.bunny.net">
+    <link href="//fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('ui/assets/css/bootstrap.min.css') }}">

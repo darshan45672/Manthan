@@ -54,7 +54,7 @@ class CollegeResource extends Resource
                     TextInput::make('college_code')->label("College Code")->required()->live()->reactive()->maxLength(5)->rules(['regex:/^[0-9][A-Z]{2}$/']),
                     Textarea::make('address')->required(),
                     TextInput::make('website')->maxLength(255)->prefix("https://"),
-                    FileUpload::make('logo')->image()->directory('college'),
+                    FileUpload::make('logo')->image()->directory('college')->disk('s3')->visibility('public')->acceptedFileTypes(['image/*'])->required(),
                 ])->columns(2),
             ]);
     }
@@ -66,7 +66,7 @@ class CollegeResource extends Resource
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('email')->sortable()->searchable(),
                 TextColumn::make('phone')->searchable(),
-                ImageColumn::make('logo'),
+                ImageColumn::make('logo')->disk('s3')->url(fn ($record) => $record->logo, true)->label('Logo'),
                 TextColumn::make('website')->searchable()
                 ->formatStateUsing(fn () => 'View site')
                 ->url(fn ($record) => $record->website, true)

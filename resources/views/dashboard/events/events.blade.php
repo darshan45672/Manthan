@@ -41,7 +41,7 @@
         <div class="col-md-4">
             <a href="{{ route('events.show', $event->id) }}" target="_blank" style="text-decoration: none">
                 <div class="card" style="max-width:20rem;">
-                    <img class="card-img-top pt-2" src="{{ Storage::url($event->banner) }}" alt="{{ $event->name }}">
+                    <img class="card-img-top pt-2" src="{{ Storage::disk('s3')->url($event->banner) }}" alt="{{ $event->name }}">
                     <center>
                         <h3 class="mt-2 mb-0">{{ $event->name }}</h3>
                     </center>

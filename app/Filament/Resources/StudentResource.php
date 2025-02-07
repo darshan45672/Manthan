@@ -23,6 +23,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -84,6 +85,7 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
+                ImageColumn::make('user.image')->label('Image')->circular(),
                 TextColumn::make('user.name')->sortable()->searchable(),
                 TextColumn::make('college.name')->numeric()->sortable(),
                 TextColumn::make('department.name')->numeric()->sortable(),

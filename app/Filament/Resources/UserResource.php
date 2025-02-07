@@ -62,7 +62,7 @@ class UserResource extends Resource
                         'HoD' => 'HoD',
                         'Principle' => 'Principle',
                     ])->required()->default('student'),
-                    FileUpload::make('image')->image()->directory('users')->nullable()->downloadable()->preserveFilenames()->openable(),
+                    FileUpload::make('image')->image()->directory('users')->disk('s3')->nullable()->downloadable()->preserveFilenames()->openable()->visibility('public'),
                     Textarea::make('address')->nullable(),
                     TextInput::make('password')->label('Password')
                         ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
@@ -82,7 +82,7 @@ class UserResource extends Resource
                 TextColumn::make('name')->label('User Name')->searchable(),
                 TextColumn::make('email')->label('User Email Id')->searchable(),
                 TextColumn::make('phone')->label('User Phone')->searchable(),
-                ImageColumn::make('image')->square(),
+                ImageColumn::make('image')->square()->disk('s3'),
                 SelectColumn::make('role')->options([
                     'student' => 'Student',
                     'faculty' => 'Faculty',
