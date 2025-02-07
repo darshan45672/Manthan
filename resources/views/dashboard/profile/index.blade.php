@@ -122,7 +122,7 @@
                                 <div class="col-12 col-sm-auto mb-sm-2">
                                     <div class="avatar avatar-5xl">
                                         <img class="rounded-circle"
-                                            src="{{filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}"
+                                            src="{{filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::disk('s3')->url(Auth::user()->image)  }}"
                                             alt="{{ $user->name }}" />
                                     </div>
                                 </div>
@@ -223,7 +223,7 @@
                                 <div class="col-12 col-sm-auto mb-sm-2">
                                     <div class="avatar avatar-5xl">
                                         <img class="rounded-circle"
-                                            src="{{filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}"
+                                            src="{{filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::disk('s3')->url(Auth::user()->image)  }}"
                                             alt="{{ $user->name }}" />
                                     </div>
                                 </div>
@@ -318,7 +318,7 @@
                                 <div class="col-12 col-sm-auto mb-sm-2">
                                     <div class="avatar avatar-5xl">
                                         <img class="rounded-circle"
-                                            src="{{ filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::url(Auth::user()->image)  }}"
+                                            src="{{ filter_var(Auth::user()->image, FILTER_VALIDATE_URL) ? Auth::user()->image : Storage::disk('s3')->url(Auth::user()->image)  }}"
                                             alt="{{ $user->name }}" />
                                     </div>
                                 </div>

@@ -46,8 +46,8 @@ class PostResource extends Resource
         return $form
             ->schema([
                 Section::make('Post Information')->schema([
-                    FileUpload::make('image')->required()->label('Post Image')->image()->acceptedFileTypes(['image/*'])
-                        ->deleteUploadedFileUsing(fn($file) => Storage::disk('public')->delete($file))
+                    FileUpload::make('image')->required()->label('Post Image')->image()->acceptedFileTypes(['image/*'])->disk('s3')->visibility('public')
+                        ->deleteUploadedFileUsing(fn($file) => Storage::disk('s3')->delete($file))
                         ->directory('posts/image')->downloadable()->preserveFilenames()->openable()->columnSpanFull(),
                     TextInput::make('title')->label('Post Title')->required()->maxLength(150)->minLength(1)->live()
                         ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
@@ -69,7 +69,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('image')->label('Post Image')->searchable()->sortable()->circular(),
+                ImageColumn::make('image')->label('Post Image')->searchable()->sortable()->circular()->disk('s3'),
                 TextColumn::make('title')->label('Post Title')->searchable()->sortable(),
                 TextColumn::make('slug')->label('Slug')->searchable()->sortable(),
                 TextColumn::make('user.name')->label('Author')->searchable()->sortable(),

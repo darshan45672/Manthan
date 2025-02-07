@@ -113,7 +113,7 @@
                 <div class="course-item course-item-2 wow fade-in-bottom" data-wow-delay="300ms">
                     <div class="course-thumb-wrap">
                         <div class="course-thumb">
-                            <img src="{{ Storage::url($event->banner) }}" alt="course">
+                            <img src="{{ Storage::disk('s3')->url($event->banner) }}" alt="course">
                         </div>
                     </div>
                     <div class="course-content-wrap">
@@ -132,7 +132,7 @@
                                 @endphp
                                 <div class="course-author">
                                     <div class="author-img">
-                                        <img src="{{ Storage::url($speaker->image) }}" alt="course">
+                                        <img src="{{ Storage::disk('s3')->url($speaker->image) }}" alt="course">
                                     </div>
                                     <div class="author-info">
                                         <h4 class="name">{{ $speaker->name }}</h4>
@@ -215,7 +215,7 @@
                 <div class="course-item wow fade-in-bottom" data-wow-delay="200ms">
                     <div class="course-thumb-wrap">
                         <div class="course-thumb">
-                            <img src="{{ Storage::url($event->banner) }}" alt="{{ $event->name }}">
+                            <img src="{{ Storage::disk('s3')->url($event->banner) }}" alt="{{ $event->name }}">
                         </div>
                     </div>
                     <div class="course-content">
@@ -233,7 +233,7 @@
                             @endphp
                             <div class="course-author">
                                 <div class="author-img">
-                                    <img src="{{ Storage::url($speaker->image) }}" alt="course">
+                                    <img src="{{ Storage::disk('s3')->url($speaker->image) }}" alt="course">
                                 </div>
                                 <div class="author-info">
                                     <h4 class="name">{{ $speaker->name }}</h4>
@@ -416,7 +416,7 @@
             <div class="col-xl-3 col-lg-4 col-md-6">
                 <div class="team-item-2 bd-dark wow fade-in-bottom" data-wow-delay="200ms">
                     <div class="team-thumb">
-                        <img src="{{ Storage::url($college->logo) }}" alt="{{ $college->name }}">
+                        <img src="{{ Storage::disk('s3')->url($college->logo) }}" alt="{{ $college->name }}">
                         <div class="team-content">
                             <div class="instructor-info">
                                 <h3 class="title text-dark">{{ $college->name }}</h3>
@@ -472,7 +472,7 @@
                         <p>"{{ $testimonial->testimonial }}”</p>
                         <div class="testi-author">
                             <div class="author-img">
-                                <img src="{{filter_var($testimonial->user->image, FILTER_VALIDATE_URL) ? $testimonial->user->image : Storage::url($testimonial->user->image)  }}"
+                                <img src="{{filter_var($testimonial->user->image, FILTER_VALIDATE_URL) ? $testimonial->user->image : Storage::disk('s3')->url($testimonial->user->image)  }}"
                                     alt="{{ $testimonial->user->name }}">
                             </div>
                             <h4 class="name">{{ $testimonial->user->name }}
@@ -506,7 +506,7 @@
             <div class="col-lg-12 col-md-6">
                 <div class="post-card-2 wow fade-in-bottom" data-wow-delay="200ms">
                     <div class="post-thumb">
-                        <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}">
+                        <img src="{{ Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
                     </div>
                     <div class="post-content-wrap">
                         <div class="post-content">

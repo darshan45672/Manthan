@@ -74,10 +74,10 @@
                             <p class="fw-bo text-body fs-9 mb-0">{{ $activity->activityType->credits }}</p>
                         </td>
                         <td class="align-middle white-space-nowrap points ps-3 py-4">
-                                <a href="{{ Storage::url($activity->file) }}" target="_blank" download class="fw-bo fs-9 mb-0"> Download</a>
+                                <a href="{{ Storage::disk('s3')->url($activity->file) }}" target="_blank" download class="fw-bo fs-9 mb-0"> Download</a>
                         </td>
                         <td class="align-middle white-space-nowrap points ps-3 py-4">
-                            <a href="{{ Storage::url($activity->certificate) }}" target="_blank" download class="fw-bo fs-9 mb-0"> Download</a>
+                            <a href="{{ Storage::disk('s3')->url($activity->certificate) }}" target="_blank" download class="fw-bo fs-9 mb-0"> Download</a>
                         </td>
                         <td class="align-middle white-space-nowrap points ps-3 py-4">
                             <p class="fw-bo text-body fs-9 mb-0">{{ $activity->hours }}</p>

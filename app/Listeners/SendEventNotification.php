@@ -25,8 +25,8 @@ class SendEventNotification
     {
         $users = User::all();
 
-        foreach ($users as $user) {
-            $user->notify(new NewEventNotification($program->program));
-        }
+        // foreach ($users as $user) {
+        //     $user->notify(new NewEventNotification($program->program));
+        // }
     }
 }

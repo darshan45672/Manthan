@@ -50,7 +50,7 @@
             <div class="col-lg-8 col-md-12">
                 <div class="event-details-content">
                     <div class="event-details-img">
-                        <img src="{{ Storage::url($program->banner) }}" alt="event">
+                        <img src="{{ Storage::disk('s3')->url($program->banner) }}" alt="event">
                     </div>
                     <h2 class="title">Event Overview</h2>
                     <p class="mb-30">{!! $program->description !!}</p>
@@ -87,7 +87,7 @@
                             <div class="team-item-3 bg-white wow fade-in-bottom" data-wow-delay="200ms">
                                 <div class="team-thumb-wrap">
                                     <div class="team-thumb">
-                                        <img src="{{ asset('ui/assets/img/team/team-9.png') }}" alt="team">
+                                        <img src="{{ Storage::disk('s3')->url($speaker->image) }}" alt="team">
                                         {{-- <img src="{{ $speaker->image->getImageURL() }}" alt="team"> --}}
                                     </div>
                                 </div>

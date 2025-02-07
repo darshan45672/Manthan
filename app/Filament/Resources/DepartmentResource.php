@@ -50,7 +50,7 @@ class DepartmentResource extends Resource
                         ->required()->label("Department Name")
                         ->maxLength(255),
                     TextInput::make('dept_code')->required(),
-                    FileUpload::make('image')->preserveFilenames()
+                    FileUpload::make('image')->preserveFilenames()->disk('s3')->visibility('public')
                     ->openable()->downloadable()->image()->directory('departments')->nullable()
                     ->columnSpanFull(),
                 ])->columns(2),
@@ -63,7 +63,7 @@ class DepartmentResource extends Resource
             ->columns([
                 TextColumn::make('name')->sortable()->searchable(),
                 TextColumn::make('dept_code')->sortable()->searchable(),
-                ImageColumn::make('image'),
+                ImageColumn::make('image')->disk('s3')->searchable(),
                 TextColumn::make('created_at')->dateTime()->sortable(),
                 TextColumn::make('updated_at')->dateTime()->sortable(),
             ])

@@ -12,7 +12,8 @@ class Speakers extends Model
 
     protected $fillable = [ 'image' ,'name', 'designation', 'email', 'phone', 'linkedin', 'instagram', 'twitter', 'program_id' ] ;
 
-    public function programs(){
+    public function program()
+    {
         return $this->belongsTo(Program::class);
     }
 }

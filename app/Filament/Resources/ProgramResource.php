@@ -73,8 +73,8 @@ class ProgramResource extends Resource
                             'Other' => 'Other',
                             ])->required(),
                             TextInput::make('duration')->label('Program Duration')->suffix("Hours")->numeric()->required()->maxLength(255),
-                            FileUpload::make('banner')->required()->label('Event Banner')->image()->acceptedFileTypes(['image/*'])
-                        ->deleteUploadedFileUsing(fn($file) => Storage::disk('public')->delete($file))
+                            FileUpload::make('banner')->required()->label('Event Banner')->image()->acceptedFileTypes(['image/*'])->disk('s3')->visibility('public')
+                        ->deleteUploadedFileUsing(fn($file) => Storage::disk('s3')->delete($file))
                         ->directory('events/banner')->downloadable()->preserveFilenames()->openable(),
                         RichEditor::make('description')->required()->columnSpanFull(),
                     ])->columns(2),

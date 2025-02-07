@@ -46,7 +46,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="event-item wow fade-in-bottom" data-wow-delay="400ms">
                     <div class="event-thumb">
-                        <img src="{{ Storage::url($program->banner) }}" alt="{{ $program->name }}">
+                        <img src="{{ Storage::disk('s3')->url($program->banner) }}" alt="{{ $program->name }}">
                         <div class="date-wrap"><h5 class="date">{{ \Carbon\Carbon::parse($program->start_date)->format('d') }}
                             <span>{{ \Carbon\Carbon::parse($program->start_date)->format('M') }}</span></h5></div>
                     </div>

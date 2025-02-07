@@ -33,15 +33,15 @@ class SpeakersRelationManager extends RelationManager
         return $form
             ->schema([
                 Section::make('Speaker Details')->columns(2)->schema([
-                    FileUpload::make('image')->label('Speaker Image')->required()->image()->acceptedFileTypes(['image/*'])
-                    ->deleteUploadedFileUsing(fn($file) => Storage::disk('public')->delete($file))
+                    FileUpload::make('image')->label('Speaker Image')->required()->image()->acceptedFileTypes(['image/*'])->disk('s3')->visibility('public')
+                    ->deleteUploadedFileUsing(fn($file) => Storage::disk('s3')->delete($file))
                     ->directory('events/speaker')->downloadable()->preserveFilenames()->openable(),
                     TextInput::make('name')->label('Speaker Name')->required()->maxLength(255),
                     TextInput::make('designation')->label('Speaker Designation')->required()->maxLength(255),
                     TextInput::make('email')->label('Speaker Email')->required()->email()->maxLength(255),
                     TextInput::make('phone')->label('Speaker Phone')->required()->maxLength(255),
                 ])->collapsible()->columns(2),
-                Select::make('program_id')->relationship('programs','name')->required(),
+                Select::make('program_id')->relationship('program','name')->required(),
                 Section::make("Speaker's Social Links")->columns(2)->schema([
                     TextInput::make("linkedin")->label('LinkedIn Url')->required()->maxLength(255),
                     TextInput::make("instagram")->label('Instagram Url')->required()->maxLength(255),
@@ -55,7 +55,7 @@ class SpeakersRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('program_id')
             ->columns([
-                ImageColumn::make('image')->searchable()->sortable()->circular(),
+                ImageColumn::make('image')->searchable()->sortable()->circular()->disk('s3')->visibility('public'),
                 TextColumn::make('name')->searchable()->sortable(),
                 TextColumn::make('designation')->searchable()->sortable(),
                 TextColumn::make('email')->searchable()->sortable(),
