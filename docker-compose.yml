@@ -1,0 +1,71 @@
+version: '3.8'
+
+networks:
+  application:
+    driver: bridge
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    networks:
+      - application
+    environment:
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/app/database/database.sqlite
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:8000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    entrypoint: ['/bin/sh', '-c']
+    command:
+      - |
+        php artisan migrate:fresh --seed
+        php artisan serve --host=0.0.0.0 --port=8000
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: scheduler
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+    networks:
+      - application
+    environment:
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/app/database/database.sqlite
+    depends_on:
+      app:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '-c']
+    command:
+      - php artisan schedule:run
+
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: queue_worker
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+    networks:
+      - application
+    environment:
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/app/database/database.sqlite
+    depends_on:
+      app:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '-c']
+    command:
+      - php artisan queue:work

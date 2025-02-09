@@ -30,20 +30,5 @@ class DatabaseSeeder extends Seeder
             'profile_completed' => false,
         ]);
 
-        // User::factory()->create([
-        //     'name' => 'darshan',
-        //     'email' => 'drshnbhandary@gmail.com',
-        //     'password' => Hash::make('12345678'),
-        //     'is_admin' => false,
-        // ]);
-        
-        // User::factory(2000)->create();
-        College::factory(50)->create();
-        Department::factory(50)->create();
-
-        // Student::factory(500)->create();
-        // Faculty::factory(500)->create();
-        // HoD::factory(50)->create();
-        // Principal::factory(10)->create();
     }
 }
